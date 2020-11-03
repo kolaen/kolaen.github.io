@@ -1,0 +1,218 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension | Gridea</title>
+<link rel="shortcut icon" href="http://kolaen.github.io/favicon.ico?v=1604382023042">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://kolaen.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension | Gridea - Atom Feed" href="http://kolaen.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="1. 摘要
+​		论文提出了一种新的Sequence-to-Sequence预训练模型。模型encoder部分基于BERT（双向encoder），decoder部分基于GPT（单向从左至右decoder），当然还包括了其他的预训练框架。BA..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://kolaen.github.io">
+  <img class="avatar" src="http://kolaen.github.io/images/avatar.png?v=1604382023042" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-06-10
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <h2 id="1-摘要">1. 摘要</h2>
+<p>​		论文提出了一种新的Sequence-to-Sequence预训练模型。模型encoder部分基于BERT（双向encoder），decoder部分基于GPT（单向从左至右decoder），当然还包括了其他的预训练框架。BART训练步骤：（1）添加了任意噪声的混乱文本；（2）模型学习重新构建原始文本。论文的实验发现，使用Sentence Permutation和novel in-filling 方法能够达到最优秀的模型。同时，作者也表示，BART模型对文本生成问题进行微调时，最有效。</p>
+<!-- more -->
+<h2 id="2-模型">2. 模型</h2>
+<p>​		其他方面，除了摘要中提到的优点和结构。作者在进行翻译任务微调时，在BART之前加入了额外的几层Transformer，这几层可以将其他语言的noise翻译成英文noise。</p>
+<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610134444.png" alt="12" loading="lazy"></figure>
+<h3 id="21-模型结构">2.1 模型结构</h3>
+<p>​		结构方面，BART模型使用了标准Seq2Seq Transformer结构然后后接GPT结构。激活函数上，作者使用了改进的ReLU函数——GeLUs。作者使用正态分布<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">N</mi><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mn>0.02</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{N}(0,0.02)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">2</span><span class="mclose">)</span></span></span></span>初始化参数。base模型使用了6层encoder和6层decoder，large模型各使用了12层。</p>
+<p>​		BART和BERT模型的不同点：</p>
+<ol>
+<li>decoder的每一层都增加了一个对encoder的hidden layer的cross-attention机制。</li>
+<li>BART没有使用BERT中的feed-forward网络。</li>
+</ol>
+<h3 id="22-预训练">2.2 预训练</h3>
+<p>​		不同于其他只能接受指定类型噪音的方法，任何类型的混乱文本都可以应用到BART上。极端一点说，当文档中的所有信息都丢失时，BART就相当于是一个语言模型了。</p>
+<p>​		对于噪声添加或者说叫transformations，作者总结了一下几个方法：</p>
+<ol>
+<li>Token Masking：和bert中一样，使用&lt;MASK&gt;对单词做替换。</li>
+<li>Token Deletion：从输入中随机删除token，这样做使得模型需要作出判断，哪一个位置上的token被删除。</li>
+<li>Text Infilling：这是使模型表现最好的一种方式。根据泊松分布<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>λ</mi><mo>=</mo><mn>3</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(\lambda=3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span>确定span，这个span范围内的token用<strong>一个</strong>&lt;mask&gt;代替。如果span=0，那么就在该位置插入一个&lt;mask&gt;。这种方式教会模型预测多少个token被丢弃。</li>
+<li>Sentence Permutation：文档分句后，打乱句子顺序。</li>
+<li>Document Rotation：随机均匀地选择一个token，让这个token作为文档的开头的单词。这样可以使模型识别文档的开头。</li>
+</ol>
+<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610173700.png" alt="" loading="lazy"></figure>
+<h3 id="23-模型微调">2.3 模型微调</h3>
+<h4 id="231-文本分类">2.3.1 文本分类</h4>
+<p>​		BART的两个输入都是相同的分类语句。和BERT不同的是，BART直接使用Decoder最后一层的最后输出作为分类的输入向量。</p>
+<h4 id="232-机器翻译">2.3.2 机器翻译</h4>
+<p>​		模型结构上，和其他微调模型不同的是，作者将预训练好的BART模型作为新模型的Decoder，然后加入了新的encoder部分。即使用一个多层的Transformer结构，将其他语言的输入转化为英文输入。在训练时，分为两步：（1）固定BART的参数，即不训练BART参数，训练新的encoder的参数；（2）经过少量的迭代，训练整个模型。</p>
+<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610175423.png" alt="" loading="lazy"></figure>
+<h2 id="3-结果分析">3. 结果分析</h2>
+<p>​		总的来说，和其他预训练模型在传统任务上的效果只是有些许的提高。不过既然叫做生成式预训练模型，那肯定是在生成式任务上做的好，比如说自动摘要生成。</p>
+<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610175725.png" alt="" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E6%91%98%E8%A6%81">1. 摘要</a></li>
+<li><a href="#2-%E6%A8%A1%E5%9E%8B">2. 模型</a>
+<ul>
+<li><a href="#21-%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84">2.1 模型结构</a></li>
+<li><a href="#22-%E9%A2%84%E8%AE%AD%E7%BB%83">2.2 预训练</a></li>
+<li><a href="#23-%E6%A8%A1%E5%9E%8B%E5%BE%AE%E8%B0%83">2.3 模型微调</a>
+<ul>
+<li><a href="#231-%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB">2.3.1 文本分类</a></li>
+<li><a href="#232-%E6%9C%BA%E5%99%A8%E7%BF%BB%E8%AF%91">2.3.2 机器翻译</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#3-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90">3. 结果分析</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
+              <h3 class="post-title">
+                Reinforced Training Data Selection for Domain Adaptation
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="http://kolaen.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>

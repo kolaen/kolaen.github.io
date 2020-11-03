@@ -1,0 +1,192 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>pytorch 错误：当使用NCCL作为DDP的后台时报错 | Gridea</title>
+<link rel="shortcut icon" href="http://kolaen.github.io/favicon.ico?v=1604382023042">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="http://kolaen.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="pytorch 错误：当使用NCCL作为DDP的后台时报错 | Gridea - Atom Feed" href="http://kolaen.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="运行环境：
+（1）在Docker中使用DDP进行单机多卡训练
+（2）cuda = 11.1
+（3）NCCL = 2.7.8
+NCCL安装教程：https://docs.nvidia.com/deeplearning/nccl/install..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="http://kolaen.github.io">
+  <img class="avatar" src="http://kolaen.github.io/images/avatar.png?v=1604382023042" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              pytorch 错误：当使用NCCL作为DDP的后台时报错
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-11-03
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>运行环境：<br>
+（1）在<strong>Docker</strong>中使用DDP进行单机多卡训练<br>
+（2）cuda = 11.1<br>
+（3）NCCL = 2.7.8<br>
+NCCL安装教程：https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html<br>
+解决思路：</p>
+<p>首先报错</p>
+<pre><code>RuntimeError: NCCL error in: ......, unhandled system error, NCCL version 2.7.8
+</code></pre>
+<p>这里看不出错误类型，加入系统环境参数，查看出错代码：<br>
+<code>os.environ['NCCL_DEBUG'] = 'INFO'</code><br>
+<code>os.environ['NCCL_DEBUG_SUBSYS'] = 'ALL'</code><br>
+查出报错信息：</p>
+<pre><code>NCCL 2.7.3 on nvidia/cuda:10.1-devel-ubuntu18.04 docker has shared memory error.
+</code></pre>
+<p>根据 https://github.com/NVIDIA/nccl/issues/342 的解决方法可以得出结论：<br>
+NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但是由于我们时在Docker环境中使用NCCL，Docker限制了/dev/shm文件夹的大小，故而会报错。</p>
+<p>解决方法有两个<br>
+（1）在docker运行时，增加/dev/shm文件的大小 <a href="https://stackoverflow.com/questions/30210362/how-to-increase-the-size-of-the-dev-shm-in-docker-container">教程</a></p>
+<pre><code>docker run -it --shm-size=256m oracle11g /bin/bash
+</code></pre>
+<p>（2）不使用内存共享机制，设置环境变量</p>
+<pre><code>NCCL_SHM_DISABLE=1
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="http://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">
+              <h3 class="post-title">
+                pytorch错误：leaf variable has been moved into the graph interior 
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="http://kolaen.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
