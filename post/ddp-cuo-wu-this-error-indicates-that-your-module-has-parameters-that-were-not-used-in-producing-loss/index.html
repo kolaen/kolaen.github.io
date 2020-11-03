@@ -5,7 +5,7 @@
     
 <meta charset="utf-8" >
 
-<title>pytorch错误：leaf variable has been moved into the graph interior  | Gridea</title>
+<title>DDP错误：This error indicates that your module has parameters that were not used in producing loss.  | Gridea</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -80,28 +80,25 @@
       <div class="content-container">
         <div class="post-detail">
           
-          <h2 class="post-title">pytorch错误：leaf variable has been moved into the graph interior </h2>
+          <h2 class="post-title">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </h2>
           <div class="post-info post-detail-info">
-            <span><i class="icon-calendar-outline"></i> 2020-11-02</span>
+            <span><i class="icon-calendar-outline"></i> 2020-11-03</span>
             
           </div>
           <div class="post-content">
-            <p>出现这个错误的一般原因是，在模型中对需要进行backward的Tenor进行了修改，即指定位置填充，如下图：<br>
-<img src="https://raw.githubusercontent.com/kolaen/Pic/master/pic/20201102184820.png" alt="" loading="lazy"><br>
-此段代码中，首先创建了一个empty Tensor，<br>
-然后将模型输出last_hidden填充到sub_averaget_state中，<br>
-在这种情况下如果没有添加<code>with torch.no_gard():</code>这段代码，<br>
-就会报出leaf variable has been moved into the graph interior 错误。</p>
-<p>其原因还在探索中!!!</p>
+            <p>使用 <code>torch.nn.parallel.DistributedDataParallel</code>时，报错：</p>
+<p><code>RuntimeError: Expected to have finished reduction in the prior iteration before starting a new one. This error indicates that your module has parameters that were not used in producing loss. You can enable unused parameter detection by (1) passing the keyword argument find_unused_parameters=True to torch.nn.parallel.DistributedDataParallel; (2) making sure all forward function outputs participate in calculating loss. If you already have done the above two steps, then the distributed data parallel module wasn't able to locate the output tensors in the return value of your module's forward function. Please include the loss function and the structure of the return value of forward of your module when reporting this issue (e.g. list, dict, iterable).</code></p>
+<p>这是因为DDP对模型的限制很严格，每个模型代码的<code>forward()</code>函数的返回tensor必须要全部参与到backward中，不允许存在返回的tensor没有被计算梯度。</p>
+<p>解决方法是严格检查每一个<code>forward()</code>函数的返回tensor</p>
 
           </div>
         </div>
 
         
           <div class="next-post">
-            <a class="purple-link" href="http://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">
+            <a class="purple-link" href="http://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">
               <h3 class="post-title">
-                下一篇：Get To The Point: Summarization with Pointer-Generator Networks
+                下一篇：pytorch 错误：当使用NCCL作为DDP的后台时报错
               </h3>
             </a>
           </div>
