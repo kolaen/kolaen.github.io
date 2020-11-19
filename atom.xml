@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>http://kolaen.github.io</id>
+    <id>https://kolaen.github.io</id>
     <title>Gridea</title>
-    <updated>2020-11-19T10:22:23.679Z</updated>
+    <updated>2020-11-19T10:29:30.540Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="http://kolaen.github.io"/>
-    <link rel="self" href="http://kolaen.github.io/atom.xml"/>
+    <link rel="alternate" href="https://kolaen.github.io"/>
+    <link rel="self" href="https://kolaen.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
-    <logo>http://kolaen.github.io/images/avatar.png</logo>
-    <icon>http://kolaen.github.io/favicon.ico</icon>
+    <logo>https://kolaen.github.io/images/avatar.png</logo>
+    <icon>https://kolaen.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, Gridea</rights>
     <entry>
         <title type="html"><![CDATA[DDP错误：This error indicates that your module has parameters that were not used in producing loss. ]]></title>
-        <id>http://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/</id>
-        <link href="http://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">
+        <id>https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/</id>
+        <link href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">
         </link>
         <updated>2020-11-03T09:54:02.000Z</updated>
         <content type="html"><![CDATA[<p>使用 <code>torch.nn.parallel.DistributedDataParallel</code>时，报错：</p>
@@ -24,8 +24,8 @@
     </entry>
     <entry>
         <title type="html"><![CDATA[pytorch 错误：当使用NCCL作为DDP的后台时报错]]></title>
-        <id>http://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/</id>
-        <link href="http://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">
+        <id>https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/</id>
+        <link href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">
         </link>
         <updated>2020-11-03T03:45:05.000Z</updated>
         <content type="html"><![CDATA[<p>运行环境：<br>
@@ -56,8 +56,8 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
     </entry>
     <entry>
         <title type="html"><![CDATA[pytorch错误：leaf variable has been moved into the graph interior ]]></title>
-        <id>http://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/</id>
-        <link href="http://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">
+        <id>https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/</id>
+        <link href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">
         </link>
         <updated>2020-11-02T10:32:41.000Z</updated>
         <content type="html"><![CDATA[<p>出现这个错误的一般原因是，在模型中对需要进行backward的Tenor进行了修改，即指定位置填充，如下图：<br>
@@ -71,8 +71,8 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
     </entry>
     <entry>
         <title type="html"><![CDATA[Get To The Point: Summarization with Pointer-Generator Networks]]></title>
-        <id>http://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/</id>
-        <link href="http://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">
+        <id>https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/</id>
+        <link href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">
         </link>
         <updated>2020-06-30T09:50:18.000Z</updated>
         <summary type="html"><![CDATA[<p>摘要：这是使用在摘要生成领域的一篇生成式模型。文章模型使用了Pointer-Generator Networks模型，这个模型结合了seq2seq方法和copy机制，并且加入了一个Coverage mechanism 。Coverage mechanism 可以限制模型生成重复的文本。模型encoder基于bi-LSTM，decoder基于单向LSTM。Copy机制依靠Attention的权重矩阵实现。</p>
@@ -137,8 +137,8 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
     </entry>
     <entry>
         <title type="html"><![CDATA[ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension]]></title>
-        <id>http://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/</id>
-        <link href="http://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">
+        <id>https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/</id>
+        <link href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">
         </link>
         <updated>2020-06-10T09:58:29.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="1-摘要">1. 摘要</h2>
@@ -181,8 +181,8 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
     </entry>
     <entry>
         <title type="html"><![CDATA[Reinforced Training Data Selection for Domain Adaptation]]></title>
-        <id>http://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/</id>
-        <link href="http://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
+        <id>https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/</id>
+        <link href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
         </link>
         <updated>2020-06-08T08:32:56.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="1-摘要">1 摘要</h2>
@@ -289,8 +289,8 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
     </entry>
     <entry>
         <title type="html"><![CDATA[我是谁？]]></title>
-        <id>http://kolaen.github.io/post/wo-shi-shui/</id>
-        <link href="http://kolaen.github.io/post/wo-shi-shui/">
+        <id>https://kolaen.github.io/post/wo-shi-shui/</id>
+        <link href="https://kolaen.github.io/post/wo-shi-shui/">
         </link>
         <updated>2020-06-08T08:24:58.000Z</updated>
         <content type="html"><![CDATA[<p>😀一名名不见经传的NLPer</p>
@@ -300,8 +300,8 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
     </entry>
     <entry>
         <title type="html"><![CDATA[决策树及其特征选择]]></title>
-        <id>http://kolaen.github.io/post/jue-ce-shu/</id>
-        <link href="http://kolaen.github.io/post/jue-ce-shu/">
+        <id>https://kolaen.github.io/post/jue-ce-shu/</id>
+        <link href="https://kolaen.github.io/post/jue-ce-shu/">
         </link>
         <updated>2020-06-08T06:04:11.000Z</updated>
         <summary type="html"><![CDATA[<p>决策树（decision tree）是一种基本的回归于分类方法。主要讨论决策树模型以及特征选择</p>
