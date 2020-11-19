@@ -1,58 +1,144 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-  <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+<meta charset="utf-8" >
+
 <title>自然语言处理 | Gridea</title>
-<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1605781792762">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1605781973320">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://kolaen.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="自然语言处理 | Gridea - Atom Feed" href="https://kolaen.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-  <meta name="description" content="温故而知新" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://kolaen.github.io">
-  <img class="avatar" src="https://kolaen.github.io/images/avatar.png?v=1605781792762" alt="">
-  </a>
-  <h1 class="site-title">
-    Gridea
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://kolaen.github.io">
+        <img class="avatar" src="https://kolaen.github.io/images/avatar.png?v=1605781973320" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://kolaen.github.io">
+        <h1 class="site-title">Gridea</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
+</div>
+
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
+
+        <div class="current-tag-container">
+          <h2 class="title">
+            <i class="icon icon-pricetags-outline"></i> 自然语言处理
+          </h2> 
+        </div>
+
+        
+<section class="post-item">
+    <div class="content">
+      <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
+        <h2 class="post-title">Reinforced Training Data Selection for Domain Adaptation</h2>
+      </a>
+      <div class="post-abstract">
+        <h2 id="1-摘要">1 摘要</h2>
+<p>监督模型存在域转移问题，其中跨域数据的分布不匹配会极大地影响模型性能。为了解决这一问题，训练数据选择（TDS）已经成为利用合适的数据做域适应的前瞻性方法。为了使TDS对数据和任务自我调整，以及能使TDS和模型训练结合在一起，这篇文章中提出了一个强化学习的框架，这个框架能够同步搜索与目标域相关的训练实例，并且学习这些实例的更好的表达。文章还设计了一个选择分布生成器（SDG），用于执行选择，并且可以通过从所选数据计算得到的奖励来更新自己。框架中包含着predictor，以确保在选定的数据上可以训练特定的任务。</p>
+
+      </div>
+      <div class="post-info">
+        <span><i class="icon icon-calendar-outline"></i> 2020-06-08</span>
+        
+          <span>
+            <i class="icon icon-pricetags-outline"></i>
+            
+              <a href="https://kolaen.github.io/tag/qkUhYl96o/">
+                机器学习
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://kolaen.github.io/tag/-wEKMxOLEA/">
+                自然语言处理
+                
+                  ，
+                
+              </a>
+            
+              <a href="https://kolaen.github.io/tag/1SDWV8QB9F/">
+                域适应
+                
+              </a>
+            
+          </span>
+        
+      </div>
+    </div>
+    
+  </section>
+
+
+<div class="pagination-container">
+  
+  
+</div>
+
+
+      </div>
+
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
   <div class="social-container">
     
       
@@ -66,63 +152,26 @@
       
     
   </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-        <div class="current-tag-container">
-            <h2 class="title">
-                标签：# 自然语言处理
-            </h2> 
-        </div>
-        <div class="post-container">
-  
-    <article class="post">
-      <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
-        <h2 class="post-title">Reinforced Training Data Selection for Domain Adaptation</h2>
-      </a>
-      <div class="post-info">
-        <span>
-          2020-06-08
-        </span>
-        <span>
-          8 min read
-        </span>
-        
-          <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="post-tag">
-            # 机器学习
-          </a>
-        
-          <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="post-tag">
-            # 自然语言处理
-          </a>
-        
-          <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="post-tag">
-            # 域适应
-          </a>
-        
-      </div>
-      
-      <div class="post-abstract">
-        <h2 id="1-摘要">1 摘要</h2>
-<p>监督模型存在域转移问题，其中跨域数据的分布不匹配会极大地影响模型性能。为了解决这一问题，训练数据选择（TDS）已经成为利用合适的数据做域适应的前瞻性方法。为了使TDS对数据和任务自我调整，以及能使TDS和模型训练结合在一起，这篇文章中提出了一个强化学习的框架，这个框架能够同步搜索与目标域相关的训练实例，并且学习这些实例的更好的表达。文章还设计了一个选择分布生成器（SDG），用于执行选择，并且可以通过从所选数据计算得到的奖励来更新自己。框架中包含着predictor，以确保在选定的数据上可以训练特定的任务。</p>
 
-      </div>
-    </article>
-  
-</div>
-
-        <div class="pagination-container">
-  
-  
-</div>
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
-      </div>
     </div>
+    <script type="application/javascript">
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
   </body>
 </html>
