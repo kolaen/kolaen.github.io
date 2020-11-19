@@ -4,25 +4,21 @@
     <meta charset="utf-8" >
 
 <title>pytorch错误：leaf variable has been moved into the graph interior  | YimingZ</title>
+<meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1605782227210">
+<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico">
 <link rel="stylesheet" href="https://kolaen.github.io/styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
-
-    <meta name="description" content="出现这个错误的一般原因是，在模型中对需要进行backward的Tenor进行了修改，即指定位置填充，如下图：
-
-此段代码中，首先创建了一个empty Tensor，
-然后将模型输出last_hidden填充到sub_averaget_sta..." />
-    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -31,7 +27,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://kolaen.github.io">
-        <img src="https://kolaen.github.io/images/avatar.png?v=1605782227210" class="site-logo">
+        <img src="https://kolaen.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">YimingZ</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -67,24 +63,11 @@
     </div>
   </div>
   <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
     <div class="site-description">
       温故而知新
     </div>
     <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
     </div>
   </div>
 </div>
@@ -96,7 +79,7 @@
             <h2 class="post-title">pytorch错误：leaf variable has been moved into the graph interior </h2>
             <div class="post-date">2020-11-02</div>
             
-            <div class="post-content" v-pre>
+            <div class="post-content">
               <p>出现这个错误的一般原因是，在模型中对需要进行backward的Tenor进行了修改，即指定位置填充，如下图：<br>
 <img src="https://raw.githubusercontent.com/kolaen/Pic/master/pic/20201102184820.png" alt="" loading="lazy"><br>
 此段代码中，首先创建了一个empty Tensor，<br>
@@ -127,9 +110,12 @@
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 <script type="application/javascript">
 
 AOS.init();
+
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -139,8 +125,6 @@ var app = new Vue({
 })
 
 </script>
-
-
 
 
 

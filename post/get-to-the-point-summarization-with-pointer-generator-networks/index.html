@@ -4,22 +4,21 @@
     <meta charset="utf-8" >
 
 <title>Get To The Point: Summarization with Pointer-Generator Networks | YimingZ</title>
+<meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1605782227210">
+<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico">
 <link rel="stylesheet" href="https://kolaen.github.io/styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
-
-    <meta name="description" content="摘要：这是使用在摘要生成领域的一篇生成式模型。文章模型使用了Pointer-Generator Networks模型，这个模型结合了seq2seq方法和copy机制，并且加入了一个Coverage mechanism 。Coverage m..." />
-    <meta name="keywords" content="" />
   </head>
   <body>
     <div id="app" class="main">
@@ -28,7 +27,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://kolaen.github.io">
-        <img src="https://kolaen.github.io/images/avatar.png?v=1605782227210" class="site-logo">
+        <img src="https://kolaen.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">YimingZ</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -64,24 +63,11 @@
     </div>
   </div>
   <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
     <div class="site-description">
       温故而知新
     </div>
     <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
     </div>
   </div>
 </div>
@@ -93,7 +79,7 @@
             <h2 class="post-title">Get To The Point: Summarization with Pointer-Generator Networks</h2>
             <div class="post-date">2020-06-30</div>
             
-            <div class="post-content" v-pre>
+            <div class="post-content">
               <p>摘要：这是使用在摘要生成领域的一篇生成式模型。文章模型使用了Pointer-Generator Networks模型，这个模型结合了seq2seq方法和copy机制，并且加入了一个Coverage mechanism 。Coverage mechanism 可以限制模型生成重复的文本。模型encoder基于bi-LSTM，decoder基于单向LSTM。Copy机制依靠Attention的权重矩阵实现。</p>
 <!-- more -->
 <h2 id="1-模型概述">1. 模型概述</h2>
@@ -173,9 +159,12 @@
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 <script type="application/javascript">
 
 AOS.init();
+
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -185,8 +174,6 @@ var app = new Vue({
 })
 
 </script>
-
-
 
 
 

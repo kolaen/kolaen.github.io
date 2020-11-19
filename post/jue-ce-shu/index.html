@@ -4,26 +4,21 @@
     <meta charset="utf-8" >
 
 <title>决策树及其特征选择 | YimingZ</title>
+<meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1605782227210">
+<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico">
 <link rel="stylesheet" href="https://kolaen.github.io/styles/main.css">
 
 
 
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
-
-    <meta name="description" content="决策树（decision tree）是一种基本的回归于分类方法。主要讨论决策树模型以及特征选择
-
-本文章是对李航老师《统计学习方法》的个人笔记。
-1. 决策树
-​         最近在做一个预测模型时，发现很多真实的数据，很难通过线性回归..." />
-    <meta name="keywords" content="机器学习,统计学习" />
   </head>
   <body>
     <div id="app" class="main">
@@ -32,7 +27,7 @@
   <div class="top-container" data-aos="fade-right">
     <div class="top-header-container">
       <a class="site-title-container" href="https://kolaen.github.io">
-        <img src="https://kolaen.github.io/images/avatar.png?v=1605782227210" class="site-logo">
+        <img src="https://kolaen.github.io/images/avatar.png" class="site-logo">
         <h1 class="site-title">YimingZ</h1>
       </a>
       <div class="menu-btn" @click="menuVisible = !menuVisible">
@@ -68,24 +63,11 @@
     </div>
   </div>
   <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    </div>
     <div class="site-description">
       温故而知新
     </div>
     <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
     </div>
   </div>
 </div>
@@ -97,7 +79,7 @@
             <h2 class="post-title">决策树及其特征选择</h2>
             <div class="post-date">2020-06-08</div>
             
-            <div class="post-content" v-pre>
+            <div class="post-content">
               <p>决策树（decision tree）是一种基本的回归于分类方法。主要讨论决策树模型以及特征选择</p>
 <!-- more -->
 <p>本文章是对李航老师《统计学习方法》的个人笔记。</p>
@@ -180,9 +162,12 @@
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
 <script type="application/javascript">
 
 AOS.init();
+
+hljs.initHighlightingOnLoad()
 
 var app = new Vue({
   el: '#app',
@@ -192,8 +177,6 @@ var app = new Vue({
 })
 
 </script>
-
-
 
 
 
