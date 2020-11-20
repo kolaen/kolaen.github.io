@@ -7,145 +7,300 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1605853832996">
 
-<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://kolaen.github.io/styles/main.css">
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div id="app" class="main">
-
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://kolaen.github.io">
-        <img src="https://kolaen.github.io/images/avatar.png" class="site-logo">
-        <h1 class="site-title">YimingZ</h1>
-      </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
-    </div>
-    <div>
-      
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://kolaen.github.io">YimingZ</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-          <a href="/" class="site-nav">
-            首页
-          </a>
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
         
-      
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
         
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
         
-      
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
         
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
+      </ul>
     </div>
   </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="site-description">
-      温故而知新
-    </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-    </div>
-  </div>
-</div>
+</nav>
 
-
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
           <h2 class="current-tag">标签: pytorch</h2>
           
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">
-                  <h2 class="post-title">可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活</h2>
-                </a>
-                <div class="post-date">
-                  2020-11-20
-                </div>
-                <div class="post-abstract">
-                  <p>生成式模型或其他需要使用softmax函数的模型，在使用pytorch时，由于pytorch提供了CrossEntropyLoss损失函数，我在计算loss之前又使用softmax做了激活，这使得vector经过了两个激活函数再计算loss。这就导致无法正确进行反向传播，模型根本无法拟合，这是十分低级且严重的错误。</p>
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活</a>
+    </h2>
+    <p class="article-meta">
+      2020-11-20
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge ">
+          pytorch
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <p>生成式模型或其他需要使用softmax函数的模型，在使用pytorch时，由于pytorch提供了CrossEntropyLoss损失函数，我在计算loss之前又使用softmax做了激活，这使得vector经过了两个激活函数再计算loss。这就导致无法正确进行反向传播，模型根本无法拟合，这是十分低级且严重的错误。</p>
 
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">
-                  <h2 class="post-title">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </h2>
-                </a>
-                <div class="post-date">
-                  2020-11-03
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">
-                  <h2 class="post-title">pytorch 错误：当使用NCCL作为DDP的后台时报错</h2>
-                </a>
-                <div class="post-date">
-                  2020-11-03
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">
-                  <h2 class="post-title">pytorch错误：leaf variable has been moved into the graph interior </h2>
-                </a>
-                <div class="post-date">
-                  2020-11-02
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
 
-          <div class="pagination-container">
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </a>
+    </h2>
+    <p class="article-meta">
+      2020-11-03
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge success">
+          pytorch
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">pytorch 错误：当使用NCCL作为DDP的后台时报错</a>
+    </h2>
+    <p class="article-meta">
+      2020-11-03
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge ">
+          pytorch
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">pytorch错误：leaf variable has been moved into the graph interior </a>
+    </h2>
+    <p class="article-meta">
+      2020-11-02
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge warning">
+          pytorch
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+
+        </div>
+        <div class="row flex-edges">
   
   
 </div>
 
-        </div>
       </div>
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://kolaen.github.io/images/avatar.png?v=1605853832996" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">pytorch 错误：当使用NCCL作为DDP的后台时报错</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">pytorch错误：leaf variable has been moved into the graph interior </a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">Get To The Point: Summarization with Pointer-Generator Networks</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">Reinforced Training Data Selection for Domain Adaptation</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/wo-shi-shui/">我是谁？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/jue-ce-shu/">决策树及其特征选择</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge ">
+          pytorch
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge warning">
+          机器学习
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge warning">
+          自然语言处理
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge secondary">
+          域适应
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/HayyR6v2EE/" class="badge secondary">
+          统计学习
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
+
     </div>
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -155,13 +310,6 @@
 AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 

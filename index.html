@@ -7,227 +7,429 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1605853832996">
 
-<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://kolaen.github.io/styles/main.css">
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
 
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div id="app" class="main">
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://kolaen.github.io">YimingZ</a></h3>
+  </div>
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
+        
+          <li>
+            
+              <a href="/" class="menu">
+                首页
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/post/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
 
-      <div class="sidebar" :class="{ 'full-height': menuVisible }">
-  <div class="top-container" data-aos="fade-right">
-    <div class="top-header-container">
-      <a class="site-title-container" href="https://kolaen.github.io">
-        <img src="https://kolaen.github.io/images/avatar.png" class="site-logo">
-        <h1 class="site-title">YimingZ</h1>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活</a>
+    </h2>
+    <p class="article-meta">
+      2020-11-20
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge warning">
+          pytorch
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <p>生成式模型或其他需要使用softmax函数的模型，在使用pytorch时，由于pytorch提供了CrossEntropyLoss损失函数，我在计算loss之前又使用softmax做了激活，这使得vector经过了两个激活函数再计算loss。这就导致无法正确进行反向传播，模型根本无法拟合，这是十分低级且严重的错误。</p>
+
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-      <div class="menu-btn" @click="menuVisible = !menuVisible">
-        <div class="line"></div>
-      </div>
     </div>
-    <div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </a>
+    </h2>
+    <p class="article-meta">
+      2020-11-03
       
-        
-          <a href="/" class="site-nav">
-            首页
-          </a>
-        
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge warning">
+          pytorch
+        </a>
       
-        
-          <a href="/archives" class="site-nav">
-            归档
-          </a>
-        
+    </p>
+    <p class="text-lead">
       
-        
-          <a href="/tags" class="site-nav">
-            标签
-          </a>
-        
-      
-        
-          <a href="/post/about" class="site-nav">
-            关于
-          </a>
-        
-      
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
     </div>
-  </div>
-  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
-    <div class="site-description">
-      温故而知新
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">pytorch 错误：当使用NCCL作为DDP的后台时报错</a>
+    </h2>
+    <p class="article-meta">
+      2020-11-03
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge secondary">
+          pytorch
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
     </div>
-    <div class="site-footer">
-      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">pytorch错误：leaf variable has been moved into the graph interior </a>
+    </h2>
+    <p class="article-meta">
+      2020-11-02
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge secondary">
+          pytorch
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
     </div>
-  </div>
-</div>
+  </article>
 
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">Get To The Point: Summarization with Pointer-Generator Networks</a>
+    </h2>
+    <p class="article-meta">
+      2020-06-30
+      
+    </p>
+    <p class="text-lead">
+      <p>摘要：这是使用在摘要生成领域的一篇生成式模型。文章模型使用了Pointer-Generator Networks模型，这个模型结合了seq2seq方法和copy机制，并且加入了一个Coverage mechanism 。Coverage mechanism 可以限制模型生成重复的文本。模型encoder基于bi-LSTM，decoder基于单向LSTM。Copy机制依靠Attention的权重矩阵实现。</p>
 
-      <div class="main-container">
-        <div class="content-container" data-aos="fade-up">
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">
-                  <h2 class="post-title">可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活</h2>
-                </a>
-                <div class="post-date">
-                  2020-11-20
-                </div>
-                <div class="post-abstract">
-                  <p>生成式模型或其他需要使用softmax函数的模型，在使用pytorch时，由于pytorch提供了CrossEntropyLoss损失函数，我在计算loss之前又使用softmax做了激活，这使得vector经过了两个激活函数再计算loss。这就导致无法正确进行反向传播，模型根本无法拟合，这是十分低级且严重的错误。</p>
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
 
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">
-                  <h2 class="post-title">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </h2>
-                </a>
-                <div class="post-date">
-                  2020-11-03
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">
-                  <h2 class="post-title">pytorch 错误：当使用NCCL作为DDP的后台时报错</h2>
-                </a>
-                <div class="post-date">
-                  2020-11-03
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">
-                  <h2 class="post-title">pytorch错误：leaf variable has been moved into the graph interior </h2>
-                </a>
-                <div class="post-date">
-                  2020-11-02
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">
-                  <h2 class="post-title">Get To The Point: Summarization with Pointer-Generator Networks</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-30
-                </div>
-                <div class="post-abstract">
-                  <p>摘要：这是使用在摘要生成领域的一篇生成式模型。文章模型使用了Pointer-Generator Networks模型，这个模型结合了seq2seq方法和copy机制，并且加入了一个Coverage mechanism 。Coverage mechanism 可以限制模型生成重复的文本。模型encoder基于bi-LSTM，decoder基于单向LSTM。Copy机制依靠Attention的权重矩阵实现。</p>
-
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">
-                  <h2 class="post-title">ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-10
-                </div>
-                <div class="post-abstract">
-                  <h2 id="1-摘要">1. 摘要</h2>
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</a>
+    </h2>
+    <p class="article-meta">
+      2020-06-10
+      
+    </p>
+    <p class="text-lead">
+      <h2 id="1-摘要">1. 摘要</h2>
 <p>​		论文提出了一种新的Sequence-to-Sequence预训练模型。模型encoder部分基于BERT（双向encoder），decoder部分基于GPT（单向从左至右decoder），当然还包括了其他的预训练框架。BART训练步骤：（1）添加了任意噪声的混乱文本；（2）模型学习重新构建原始文本。论文的实验发现，使用Sentence Permutation和novel in-filling 方法能够达到最优秀的模型。同时，作者也表示，BART模型对文本生成问题进行微调时，最有效。</p>
 
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
-                  <h2 class="post-title">Reinforced Training Data Selection for Domain Adaptation</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-08
-                </div>
-                <div class="post-abstract">
-                  <h2 id="1-摘要">1 摘要</h2>
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">Reinforced Training Data Selection for Domain Adaptation</a>
+    </h2>
+    <p class="article-meta">
+      2020-06-08
+      
+        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge success">
+          机器学习
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge success">
+          自然语言处理
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge secondary">
+          域适应
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <h2 id="1-摘要">1 摘要</h2>
 <p>监督模型存在域转移问题，其中跨域数据的分布不匹配会极大地影响模型性能。为了解决这一问题，训练数据选择（TDS）已经成为利用合适的数据做域适应的前瞻性方法。为了使TDS对数据和任务自我调整，以及能使TDS和模型训练结合在一起，这篇文章中提出了一个强化学习的框架，这个框架能够同步搜索与目标域相关的训练实例，并且学习这些实例的更好的表达。文章还设计了一个选择分布生成器（SDG），用于执行选择，并且可以通过从所选数据计算得到的奖励来更新自己。框架中包含着predictor，以确保在选定的数据上可以训练特定的任务。</p>
 
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/wo-shi-shui/">
-                  <h2 class="post-title">我是谁？</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-08
-                </div>
-                <div class="post-abstract">
-                  
-                </div>
-              </div>
-              
-            </article>
-          
-            <article class="post-item">
-              <div class="left">
-                <a href="https://kolaen.github.io/post/jue-ce-shu/">
-                  <h2 class="post-title">决策树及其特征选择</h2>
-                </a>
-                <div class="post-date">
-                  2020-06-08
-                </div>
-                <div class="post-abstract">
-                  <p>决策树（decision tree）是一种基本的回归于分类方法。主要讨论决策树模型以及特征选择</p>
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
 
-                </div>
-              </div>
-              
-            </article>
-          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/wo-shi-shui/">我是谁？</a>
+    </h2>
+    <p class="article-meta">
+      2020-06-08
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/wo-shi-shui/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
 
-          <div class="pagination-container">
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/jue-ce-shu/">决策树及其特征选择</a>
+    </h2>
+    <p class="article-meta">
+      2020-06-08
+      
+        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge secondary">
+          机器学习
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/HayyR6v2EE/" class="badge secondary">
+          统计学习
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <p>决策树（decision tree）是一种基本的回归于分类方法。主要讨论决策树模型以及特征选择</p>
+
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/jue-ce-shu/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+
+        </div>
+        
+        <div class="row flex-edges">
   
   
 </div>
 
-        </div>
       </div>
+      
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://kolaen.github.io/images/avatar.png?v=1605853832996" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">pytorch 错误：当使用NCCL作为DDP的后台时报错</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">pytorch错误：leaf variable has been moved into the graph interior </a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">Get To The Point: Summarization with Pointer-Generator Networks</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">Reinforced Training Data Selection for Domain Adaptation</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/wo-shi-shui/">我是谁？</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/jue-ce-shu/">决策树及其特征选择</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge ">
+          pytorch
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge ">
+          机器学习
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge success">
+          自然语言处理
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge secondary">
+          域适应
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/HayyR6v2EE/" class="badge ">
+          统计学习
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
+</div>
 
+    </div>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
 <script type="application/javascript">
@@ -235,13 +437,6 @@
 AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 
