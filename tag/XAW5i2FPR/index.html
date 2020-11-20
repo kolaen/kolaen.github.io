@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+       <meta http-equiv="content-type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta content="yes" name="apple-mobile-web-app-capable" />
   <meta content="black" name="apple-mobile-web-app-status-bar-style" />
@@ -9,14 +9,14 @@
   <meta name="keywords" content="">
   <meta name="description" content="">
   <meta name="author" content="kveln">
-  <title>DDP错误：This error indicates that your module has parameters that were not used in producing loss.  | YimingZ</title>
+  <title>pytorch | YimingZ</title>
   <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
   <!-- <link href="https://kolaen.github.io/media/css/bootstrap.min.css" rel="stylesheet"> -->
   <!--  <link href="https://kolaen.github.io/media/css/all.min.css" rel="stylesheet" type="text/css"> -->
   <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
   <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link rel="alternate" type="application/rss+xml" title="DDP错误：This error indicates that your module has parameters that were not used in producing loss.  | YimingZ » Feed" href="https://kolaen.github.io/atom.xml">
+  <link rel="alternate" type="application/rss+xml" title="pytorch | YimingZ » Feed" href="https://kolaen.github.io/atom.xml">
   <link rel="stylesheet"href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
   <link href="https://kolaen.github.io/styles/main.css" rel="stylesheet">
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
@@ -25,11 +25,6 @@
   <script>hljs.initHighlightingOnLoad();</script>
   
 
-    <meta property="og:description" content="DDP错误：This error indicates that your module has parameters that were not used in producing loss. "/>
-    <meta property="og:url" content="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/"/>
-    <meta property="og:locale" content="zh-CN"/>
-    <meta property="og:type" content="website"/>
-    <meta property="og:site_name" content="YimingZ"/>
   </head>
   <body>
   	<!-- Navigation -->
@@ -71,54 +66,107 @@
       </div>
     </div>
   </nav>
-  <!-- Page Header -->
+<!-- Page Header -->
   <header class="masthead" style="background-image: url('https://kolaen.github.io/media/images/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="post-heading">
-          	<span class="tags">
-          	 
-            <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="tag">pytorch</a>
-            
-        </span>
-            <h1>DDP错误：This error indicates that your module has parameters that were not used in producing loss. </h1>
-            <span class="meta">
-            	Posted on
-              2020-11-03，2 min read
-            </span>
+            <h1 class="tag-tl">#pytorch</h1>
           </div>
         </div>
       </div>
     </div>
   </header>
-
-  <!-- Post Content -->
-  <article>
     <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <p>使用 <code>torch.nn.parallel.DistributedDataParallel</code>时，报错：</p>
-<p><code>RuntimeError: Expected to have finished reduction in the prior iteration before starting a new one. This error indicates that your module has parameters that were not used in producing loss. You can enable unused parameter detection by (1) passing the keyword argument find_unused_parameters=True to torch.nn.parallel.DistributedDataParallel; (2) making sure all forward function outputs participate in calculating loss. If you already have done the above two steps, then the distributed data parallel module wasn't able to locate the output tensors in the return value of your module's forward function. Please include the loss function and the structure of the return value of forward of your module when reporting this issue (e.g. list, dict, iterable).</code></p>
-<p>这是因为DDP对模型的限制很严格，每个模型代码的<code>forward()</code>函数的返回tensor必须要全部参与到backward中，不允许存在返回的tensor没有被计算梯度。</p>
-<p>解决方法是严格检查每一个<code>forward()</code>函数的返回tensor</p>
-
-          
-          <p class="next-post">下一篇：
-            <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">
-              <span class="post-title">
-                pytorch 错误：当使用NCCL作为DDP的后台时报错&rarr;
-              </span>
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+       
+        <div class="post-preview">
+          <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">
+            <h2 class="post-title">
+              可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活
+            </h2>
             </a>
-          </p>
-        
-        <div class="comment">
-          
+            <h3 class="post-subtitle">
+              <p>生成式模型或其他需要使用softmax函数的模型，在使用pytorch时，由于pytorch提供了CrossEntropyLoss损失函数，我在计算loss之前又使用softmax做了激活，这使得vector经过了两个激活函数再计算loss。这就导致无法正确进行反向传播，模型根本无法拟合，这是十分低级且严重的错误。</p>
+
+            </h3>
+          <p class="post-meta">
+             <span class="time">2020-11-20</span>
+             <span>,</span>
+             <span class="post-stats">3 min read</span>
+            </p>
         </div>
+        <hr>
+        <div class="clearfix">
+        </div>
+        
+        <div class="post-preview">
+          <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">
+            <h2 class="post-title">
+              DDP错误：This error indicates that your module has parameters that were not used in producing loss. 
+            </h2>
+            </a>
+            <h3 class="post-subtitle">
+              
+            </h3>
+          <p class="post-meta">
+             <span class="time">2020-11-03</span>
+             <span>,</span>
+             <span class="post-stats">2 min read</span>
+            </p>
+        </div>
+        <hr>
+        <div class="clearfix">
+        </div>
+        
+        <div class="post-preview">
+          <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">
+            <h2 class="post-title">
+              pytorch 错误：当使用NCCL作为DDP的后台时报错
+            </h2>
+            </a>
+            <h3 class="post-subtitle">
+              
+            </h3>
+          <p class="post-meta">
+             <span class="time">2020-11-03</span>
+             <span>,</span>
+             <span class="post-stats">2 min read</span>
+            </p>
+        </div>
+        <hr>
+        <div class="clearfix">
+        </div>
+        
+        <div class="post-preview">
+          <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">
+            <h2 class="post-title">
+              pytorch错误：leaf variable has been moved into the graph interior 
+            </h2>
+            </a>
+            <h3 class="post-subtitle">
+              
+            </h3>
+          <p class="post-meta">
+             <span class="time">2020-11-02</span>
+             <span>,</span>
+             <span class="post-stats">1 min read</span>
+            </p>
+        </div>
+        <hr>
+        <div class="clearfix">
+        </div>
+        
+        
+        
       </div>
     </div>
-  </article>
+  </div>
+
+  
  <!-- Footer -->
   <footer>
     <div class="container">
@@ -190,4 +238,3 @@
   })(this));</script>
   </body>
 </html>
-
