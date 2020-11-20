@@ -78,6 +78,22 @@
           
             <article class="post-item">
               <div class="left">
+                <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">
+                  <h2 class="post-title">可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活</h2>
+                </a>
+                <div class="post-date">
+                  2020-11-20
+                </div>
+                <div class="post-abstract">
+                  <p>生成式模型或其他需要使用softmax函数的模型，在使用pytorch时，由于pytorch提供了CrossEntropyLoss损失函数，我在计算loss之前又使用softmax做了激活，这使得vector经过了两个激活函数再计算loss。这就导致无法正确进行反向传播，模型根本无法拟合，这是十分低级且严重的错误。</p>
+
+                </div>
+              </div>
+              
+            </article>
+          
+            <article class="post-item">
+              <div class="left">
                 <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">
                   <h2 class="post-title">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </h2>
                 </a>
