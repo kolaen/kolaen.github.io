@@ -1,251 +1,208 @@
 <!DOCTYPE html>
 <html>
   <head>
-       <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta content="yes" name="apple-mobile-web-app-capable" />
-  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
-  <meta name="referrer" content="never">
-  <meta name="keywords" content="">
-  <meta name="description" content="">
-  <meta name="author" content="kveln">
-  <title>归档 | YimingZ</title>
-  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-  <!-- <link href="https://kolaen.github.io/media/css/bootstrap.min.css" rel="stylesheet"> -->
-  <!--  <link href="https://kolaen.github.io/media/css/all.min.css" rel="stylesheet" type="text/css"> -->
-  <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-  <link rel="alternate" type="application/rss+xml" title="归档 | YimingZ » Feed" href="https://kolaen.github.io/atom.xml">
-  <link rel="stylesheet"href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
-  <link href="https://kolaen.github.io/styles/main.css" rel="stylesheet">
-  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
-  <!-- <script src="https://kolaen.github.io/media/scripts/jquery.min.js"></script> -->
-  <script>hljs.initHighlightingOnLoad();</script>
-  
+    <meta charset="utf-8" >
+
+<title>文章归档 | YimingZ</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico">
+<link rel="stylesheet" href="https://kolaen.github.io/styles/main.css">
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
 
   </head>
   <body>
-  	<!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand" href="https://kolaen.github.io">YimingZ</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          
-          <li class="nav-item">
-              
-              <a class="nav-link" href="/">首页</a>
-              
-          </li>
-          
-          <li class="nav-item">
-              
-              <a class="nav-link" href="/archives">归档</a>
-              
-          </li>
-          
-          <li class="nav-item">
-              
-              <a class="nav-link" href="/tags">标签</a>
-              
-          </li>
-          
-          <li class="nav-item">
-              
-              <a class="nav-link" href="/post/about">关于</a>
-              
-          </li>
-          
-        </ul>
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://kolaen.github.io">
+        <img src="https://kolaen.github.io/images/avatar.png" class="site-logo">
+        <h1 class="site-title">YimingZ</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
       </div>
     </div>
-  </nav>
-  <!-- Page Header -->
-  <header class="masthead" style="background-image: url('https://kolaen.github.io/media/images/home-bg.jpg')">
-    <div class="overlay"></div>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-heading">
-            <h1 class="tag-tl">Archives</h1>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- Post Content -->
-  <article>
-    <div class="container">
-      <div class="row">
+    <div>
+      
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
         
       
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <div class="post-archives">
-    <h2 class="year">2020</h2>
-    
-                
-        <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/" class="post">
-          <h2 class="post-title Archives">
-            可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活
-          </h2>
-          <div class="time post-meta">2020-11-20</div>
-        </a>
-  
-                    
-                
-        <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/" class="post">
-          <h2 class="post-title Archives">
-            DDP错误：This error indicates that your module has parameters that were not used in producing loss. 
-          </h2>
-          <div class="time post-meta">2020-11-03</div>
-        </a>
-  
-                    
-                
-        <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/" class="post">
-          <h2 class="post-title Archives">
-            pytorch 错误：当使用NCCL作为DDP的后台时报错
-          </h2>
-          <div class="time post-meta">2020-11-03</div>
-        </a>
-  
-                    
-                
-        <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/" class="post">
-          <h2 class="post-title Archives">
-            pytorch错误：leaf variable has been moved into the graph interior 
-          </h2>
-          <div class="time post-meta">2020-11-02</div>
-        </a>
-  
-                    
-                
-        <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/" class="post">
-          <h2 class="post-title Archives">
-            Get To The Point: Summarization with Pointer-Generator Networks
-          </h2>
-          <div class="time post-meta">2020-06-30</div>
-        </a>
-  
-                    
-                
-        <a href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/" class="post">
-          <h2 class="post-title Archives">
-            ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension
-          </h2>
-          <div class="time post-meta">2020-06-10</div>
-        </a>
-  
-                    
-                
-        <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/" class="post">
-          <h2 class="post-title Archives">
-            Reinforced Training Data Selection for Domain Adaptation
-          </h2>
-          <div class="time post-meta">2020-06-08</div>
-        </a>
-  
-                    
-                
-        <a href="https://kolaen.github.io/post/wo-shi-shui/" class="post">
-          <h2 class="post-title Archives">
-            我是谁？
-          </h2>
-          <div class="time post-meta">2020-06-08</div>
-        </a>
-  
-                    
-                
-        <a href="https://kolaen.github.io/post/jue-ce-shu/" class="post">
-          <h2 class="post-title Archives">
-            决策树及其特征选择
-          </h2>
-          <div class="time post-meta">2020-06-08</div>
-        </a>
-  
-                    
-        </div>
-        </div>
         
-      </div>
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
+      
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
+      
     </div>
-  </article>
+  </div>
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="site-description">
+      温故而知新
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+    </div>
+  </div>
+</div>
 
 
- <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          
+
+          <h2 class="archives-title">文章归档</h2>
+          <div class="archives-container">
             
-            
+              <h2 class="year" data-aos="fade-in" data-aos-delay="500">2020</h2>
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">
+                      <h2 class="post-title">
+                        可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">
+                      <h2 class="post-title">
+                        DDP错误：This error indicates that your module has parameters that were not used in producing loss. 
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">
+                      <h2 class="post-title">
+                        pytorch 错误：当使用NCCL作为DDP的后台时报错
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">
+                      <h2 class="post-title">
+                        pytorch错误：leaf variable has been moved into the graph interior 
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">
+                      <h2 class="post-title">
+                        Get To The Point: Summarization with Pointer-Generator Networks
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">
+                      <h2 class="post-title">
+                        ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
+                      <h2 class="post-title">
+                        Reinforced Training Data Selection for Domain Adaptation
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/wo-shi-shui/">
+                      <h2 class="post-title">
+                        我是谁？
+                      </h2>
+                    </a>
+                  </article>
+                
+              
+                
+                  <article class="post">
+                    <a href="https://kolaen.github.io/post/jue-ce-shu/">
+                      <h2 class="post-title">
+                        决策树及其特征选择
+                      </h2>
+                    </a>
+                  </article>
+                
               
             
-              
-            
-              
-            
-              
-            
-              
-            
-              
-            
-              
-              <li class="list-inline-item">
-              <a href="https://kolaen.github.io/atom.xml" target="_blank">
-                <span class="fa-stack fa-lg">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-              </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy;<span>YimingZ</span><br><a href="https://github.com/getgridea/gridea" class="Themeinfo">Powered by Gridea</a></p>
+          </div>
+
+          <div class="pagination-container">
+  
+  
+</div>
+
         </div>
       </div>
     </div>
-   </footer>
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-  <!-- <script src="https://kolaen.github.io/media/scripts/bootstrap.bundle.min.js"></script> -->
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://cdn.jsdelivr.net/gh/Alanrk/clean-cdn@1.0/scripts/clean-blog.min.js"></script>
-  <!-- <script src="https://kolaen.github.io/media/scripts/clean-blog.min.js"></script> -->
-  <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
-  <style type="text/css">a.back_to_top{text-decoration:none;position:fixed;bottom:40px;right:30px;background:#f0f0f0;height:40px;width:40px;border-radius:50%;line-height:36px;font-size:18px;text-align:center;transition-duration:.5s;transition-propety:background-color;display:none}a.back_to_top span{color:#888}a.back_to_top:hover{cursor:pointer;background:#dfdfdf}a.back_to_top:hover span{color:#555}@media print,screen and(max-width:580px){.back_to_top{display:none!important}}</style>
-<a id="back_to_top" href="#" class="back_to_top">
-  <span>▲</span></a>
-<script>$(document).ready((function(_this) {
-    return function() {
-      var bt;
-      bt = $('#back_to_top');
-      if ($(document).width() > 480) {
-        $(window).scroll(function() {
-          var st;
-          st = $(window).scrollTop();
-          if (st > 30) {
-            return bt.css('display', 'block')
-          } else {
-            return bt.css('display', 'none')
-          }
-        });
-        return bt.click(function() {
-          $('body,html').animate({
-            scrollTop: 0
-          },
-          800);
-          return false
-        })
-      }
-    }
-  })(this));</script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
+
+hljs.initHighlightingOnLoad()
+
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
+
+</script>
+
+
+
+
   </body>
 </html>
