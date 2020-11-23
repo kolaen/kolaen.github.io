@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kolaen.github.io</id>
     <title>YimingZ</title>
-    <updated>2020-11-23T02:52:12.865Z</updated>
+    <updated>2020-11-23T03:04:55.604Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kolaen.github.io"/>
     <link rel="self" href="https://kolaen.github.io/atom.xml"/>
@@ -82,7 +82,16 @@ self.load_state_dict(state_dict)
 </code></pre>
 <p>这样一来，这个XML文件构成了如下的一颗树结构：</p>
 <h2 id="2-elementtree">2 ElementTree</h2>
-<p>ElementTree 是Python中一个解析XML的包，给我的感觉就是简单直观。ElementTree将XML文件解析为一个XML树，通过遍历这棵树实现数据的访问</p>
+<p>ElementTree 是Python中一个解析XML的包，给我的感觉就是简单直观。ElementTree将XML文件解析为一个XML树，通过遍历这棵树实现数据的访问。</p>
+<pre><code>import xml.etree.ElementTree as ET
+tree = ET.parse(file_path)
+root = tree.getroot()[1:]
+# 根节点
+for child in root:
+    reversion = child.find('{http://www.mediawiki.org/xml/export-0.10/}revision')
+    text = reversion.find('{http://www.mediawiki.org/xml/export-0.10/}text').text
+</code></pre>
+<p>每个节点，包括根节点都会解析出三个属性：<code>tag</code> <code>attrib</code> <code>text</code></p>
 ]]></content>
     </entry>
     <entry>
