@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>pytorch错误：leaf variable has been moved into the graph interior  | YimingZ</title>
+<title>DDP | YimingZ</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,7 +23,6 @@
 
   </head>
   <body>
-  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://kolaen.github.io">YimingZ</a></h3>
@@ -80,46 +79,45 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <article class="article">
-            <h1>pytorch错误：leaf variable has been moved into the graph interior </h1>
-            <p class="article-meta">
-              2020-11-02
-              
-                <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge warning">
-                  pytorch
-                </a>
-              
-            </p>
-            
-            <div class="post-content">
-              <p>出现这个错误的一般原因是，在模型中对需要进行backward的Tenor进行了修改，即指定位置填充，如下图：<br>
-<img src="https://raw.githubusercontent.com/kolaen/Pic/master/pic/20201102184820.png" alt="" loading="lazy"><br>
-此段代码中，首先创建了一个empty Tensor，<br>
-然后将模型输出last_hidden填充到sub_averaget_state中，<br>
-在这种情况下如果没有添加<code>with torch.no_gard():</code>这段代码，<br>
-就会报出leaf variable has been moved into the graph interior 错误。</p>
-<p>其原因还在探索中!!!</p>
+          <h2 class="current-tag">标签: DDP</h2>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/pytorch-ddp-xian-cun-zhan-yong-bu-jun-heng-wen-ti/">Pytorch DDP 显存占用不均衡问题</a>
+    </h2>
+    <p class="article-meta">
+      2020-11-23
+      
+        <a href="https://kolaen.github.io/tag/rP34CK1dJ/" class="badge warning">
+          DDP
+        </a>
+      
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge ">
+          pytorch
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <p>使用DDP加载模型并进行训练时，发现GPU0的显存占用远超其他的显卡，导致无法使用大batch。</p>
 
-            </div>
-          </article>
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/pytorch-ddp-xian-cun-zhan-yong-bu-jun-heng-wen-ti/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
+
+
         </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                下一篇
-              </div>
-              <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">
-                <h3 class="post-title">
-                  Get To The Point: Summarization with Pointer-Generator Networks
-                </h3>
-              </a>
-            </div>
-          
-        </div>
-        
+        <div class="row flex-edges">
+  
+  
+</div>
+
       </div>
-
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://kolaen.github.io/images/avatar.png?v=1606099608965" class="no-responsive avatar">
@@ -222,15 +220,15 @@
           DDP
         </a>
       
-        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge secondary">
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge success">
           pytorch
         </a>
       
-        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge success">
+        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge warning">
           机器学习
         </a>
       
-        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge success">
+        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge secondary">
           自然语言处理
         </a>
       
@@ -248,7 +246,6 @@
     Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
-
 
     </div>
 
