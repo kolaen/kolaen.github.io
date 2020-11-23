@@ -7,7 +7,7 @@
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1605867550758">
+<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1606099546904">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -88,7 +88,50 @@
             </p>
             
             <div class="post-content">
-              <p>d</p>
+              <p>为了获取大量的训练语料，wiki的存档离线数据 <a href="https://dumps.wikimedia.org/enwiki/">https://dumps.wikimedia.org/enwiki/</a>是个非常好的语料库。wiki dump有SQL和XML两个版本，下面我简单总结一下如何解析wiki dump的XML文件</p>
+<!-- more -->
+<h2 id="1-xml基本结构">1 XML基本结构</h2>
+<p>以下是wiki dump文件的XML格式， &lt;&gt;内的第一个字段代表tag，其余字段形如“a=b”代表attrib<br>
+一对&lt;&gt; &lt;/&gt;构成了一个节点，&lt;&gt;&lt;/&gt;之间的内容代表text。</p>
+<pre><code>&lt;mediawiki xmlns=&quot;http://www.mediawiki.org/xml/export-0.10/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd&quot; version=&quot;0.10&quot; xml:lang=&quot;en&quot;&gt;
+  &lt;siteinfo&gt;
+    &lt;sitename&gt;Wikipedia&lt;/sitename&gt;
+    &lt;dbname&gt;enwiki&lt;/dbname&gt;
+    &lt;base&gt;https://en.wikipedia.org/wiki/Main_Page&lt;/base&gt;
+    &lt;generator&gt;MediaWiki 1.36.0-wmf.14&lt;/generator&gt;
+    &lt;case&gt;first-letter&lt;/case&gt;
+    &lt;namespaces&gt;
+      &lt;namespace key=&quot;-2&quot; case=&quot;first-letter&quot;&gt;Media&lt;/namespace&gt;
+      &lt;namespace key=&quot;-1&quot; case=&quot;first-letter&quot;&gt;Special&lt;/namespace&gt;
+      .......
+    &lt;/namespaces&gt;
+  &lt;/siteinfo&gt;
+  &lt;page&gt;
+    &lt;title&gt;Northern grasshopper mouse&lt;/title&gt;
+    &lt;ns&gt;0&lt;/ns&gt;
+    &lt;id&gt;14324603&lt;/id&gt;
+    &lt;revision&gt;
+      &lt;id&gt;952212792&lt;/id&gt;
+      &lt;parentid&gt;932530194&lt;/parentid&gt;
+      &lt;timestamp&gt;2020-04-21T03:37:21Z&lt;/timestamp&gt;
+      &lt;contributor&gt;
+        &lt;username&gt;InternetArchiveBot&lt;/username&gt;
+        &lt;id&gt;27015025&lt;/id&gt;
+      &lt;/contributor&gt;
+      &lt;comment&gt;Rescuing 1 sources and tagging 0 as dead.) #IABot (v2.0&lt;/comment&gt;
+      &lt;model&gt;wikitext&lt;/model&gt;
+      &lt;format&gt;text/x-wiki&lt;/format&gt;
+      &lt;text bytes=&quot;6671&quot; xml:space=&quot;preserve&quot;&gt; ...... &lt;/text&gt;
+      &lt;sha1&gt;cb6ka9vga7c7n73ytdsqfu2zviychjo&lt;/sha1&gt;
+    &lt;/revision&gt;
+  &lt;/page&gt;
+  &lt;page&gt;
+   ......
+  &lt;/page&gt;
+</code></pre>
+<p>这样一来，这个XML文件构成了如下的一颗树结构：</p>
+<h2 id="2-elementtree">2 ElementTree</h2>
+<p>ElementTree 是Python中一个解析XML的包，给我的感觉就是简单直观。ElementTree将XML文件解析为一个XML树，通过遍历这棵树实现数据的访问</p>
 
             </div>
           </article>
@@ -112,7 +155,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://kolaen.github.io/images/avatar.png?v=1605867550758" class="no-responsive avatar">
+    <img src="https://kolaen.github.io/images/avatar.png?v=1606099546904" class="no-responsive avatar">
     <div class="text-muted">温故而知新</div>
     <div class="social-container">
       
@@ -134,6 +177,12 @@
     </div>
     <div class="row">
       <ul>
+        
+          
+            <li>
+              <a href="https://kolaen.github.io/post/pytorch-ddp-xian-cun-zhan-yong-bu-jun-heng-wen-ti/">Pytorch DDP 显存占用不均衡问题</a>
+            </li>
+          
         
           
             <li>
@@ -190,10 +239,6 @@
           
         
           
-            <li>
-              <a href="https://kolaen.github.io/post/wo-shi-shui/">我是谁？</a>
-            </li>
-          
         
           
         
@@ -206,19 +251,19 @@
     </div>
     <div class="row">
       
-        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge ">
+        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge secondary">
           pytorch
         </a>
       
-        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge ">
+        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge secondary">
           机器学习
         </a>
       
-        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge warning">
+        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge ">
           自然语言处理
         </a>
       
-        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge ">
+        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge success">
           域适应
         </a>
       

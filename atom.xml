@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kolaen.github.io</id>
     <title>YimingZ</title>
-    <updated>2020-11-20T10:56:44.352Z</updated>
+    <updated>2020-11-23T02:45:50.664Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kolaen.github.io"/>
     <link rel="self" href="https://kolaen.github.io/atom.xml"/>
@@ -11,12 +11,78 @@
     <icon>https://kolaen.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, YimingZ</rights>
     <entry>
+        <title type="html"><![CDATA[Pytorch DDP 显存占用不均衡问题]]></title>
+        <id>https://kolaen.github.io/post/pytorch-ddp-xian-cun-zhan-yong-bu-jun-heng-wen-ti/</id>
+        <link href="https://kolaen.github.io/post/pytorch-ddp-xian-cun-zhan-yong-bu-jun-heng-wen-ti/">
+        </link>
+        <updated>2020-11-23T02:27:46.000Z</updated>
+        <summary type="html"><![CDATA[<p>使用DDP加载模型并进行训练时，发现GPU0的显存占用远超其他的显卡，导致无法使用大batch。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>使用DDP加载模型并进行训练时，发现GPU0的显存占用远超其他的显卡，导致无法使用大batch。</p>
+<!-- more -->
+<p>原因在于加载保存的parameter时，没有将model映射到对应的GPU中。因为我们有四个进程，这四个进程都会默认地将parameter加载到GPU0中，然后再复制到GPU1、2、3中，并且不会自动删除多余的model。</p>
+<p>将加载的parameter映射到不同的GPU中：</p>
+<pre><code>state_dict = torch.load(model_name, map_location=self.args.device)
+self.load_state_dict(state_dict)
+</code></pre>
+<p>在DDP中，我的代码是这样写的：</p>
+<pre><code>model.load_state_dict(torch.load('pytorch_model_9.bin', map_location=torch.device(rank)))
+</code></pre>
+<p>这里rank的类型是int，所以使用<code>torch.device(rank)</code>转换一下。</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[XML解析-以wiki_dump为例]]></title>
         <id>https://kolaen.github.io/post/xml-jie-xi-yi-wiki_dump-wei-li/</id>
         <link href="https://kolaen.github.io/post/xml-jie-xi-yi-wiki_dump-wei-li/">
         </link>
         <updated>2020-11-20T10:18:25.000Z</updated>
-        <content type="html"><![CDATA[<p>d</p>
+        <summary type="html"><![CDATA[<p>为了获取大量的训练语料，wiki的存档离线数据 <a href="https://dumps.wikimedia.org/enwiki/">https://dumps.wikimedia.org/enwiki/</a>是个非常好的语料库。wiki dump有SQL和XML两个版本，下面我简单总结一下如何解析wiki dump的XML文件</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>为了获取大量的训练语料，wiki的存档离线数据 <a href="https://dumps.wikimedia.org/enwiki/">https://dumps.wikimedia.org/enwiki/</a>是个非常好的语料库。wiki dump有SQL和XML两个版本，下面我简单总结一下如何解析wiki dump的XML文件</p>
+<!-- more -->
+<h2 id="1-xml基本结构">1 XML基本结构</h2>
+<p>以下是wiki dump文件的XML格式， &lt;&gt;内的第一个字段代表tag，其余字段形如“a=b”代表attrib<br>
+一对&lt;&gt; &lt;/&gt;构成了一个节点，&lt;&gt;&lt;/&gt;之间的内容代表text。</p>
+<pre><code>&lt;mediawiki xmlns=&quot;http://www.mediawiki.org/xml/export-0.10/&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xsi:schemaLocation=&quot;http://www.mediawiki.org/xml/export-0.10/ http://www.mediawiki.org/xml/export-0.10.xsd&quot; version=&quot;0.10&quot; xml:lang=&quot;en&quot;&gt;
+  &lt;siteinfo&gt;
+    &lt;sitename&gt;Wikipedia&lt;/sitename&gt;
+    &lt;dbname&gt;enwiki&lt;/dbname&gt;
+    &lt;base&gt;https://en.wikipedia.org/wiki/Main_Page&lt;/base&gt;
+    &lt;generator&gt;MediaWiki 1.36.0-wmf.14&lt;/generator&gt;
+    &lt;case&gt;first-letter&lt;/case&gt;
+    &lt;namespaces&gt;
+      &lt;namespace key=&quot;-2&quot; case=&quot;first-letter&quot;&gt;Media&lt;/namespace&gt;
+      &lt;namespace key=&quot;-1&quot; case=&quot;first-letter&quot;&gt;Special&lt;/namespace&gt;
+      .......
+    &lt;/namespaces&gt;
+  &lt;/siteinfo&gt;
+  &lt;page&gt;
+    &lt;title&gt;Northern grasshopper mouse&lt;/title&gt;
+    &lt;ns&gt;0&lt;/ns&gt;
+    &lt;id&gt;14324603&lt;/id&gt;
+    &lt;revision&gt;
+      &lt;id&gt;952212792&lt;/id&gt;
+      &lt;parentid&gt;932530194&lt;/parentid&gt;
+      &lt;timestamp&gt;2020-04-21T03:37:21Z&lt;/timestamp&gt;
+      &lt;contributor&gt;
+        &lt;username&gt;InternetArchiveBot&lt;/username&gt;
+        &lt;id&gt;27015025&lt;/id&gt;
+      &lt;/contributor&gt;
+      &lt;comment&gt;Rescuing 1 sources and tagging 0 as dead.) #IABot (v2.0&lt;/comment&gt;
+      &lt;model&gt;wikitext&lt;/model&gt;
+      &lt;format&gt;text/x-wiki&lt;/format&gt;
+      &lt;text bytes=&quot;6671&quot; xml:space=&quot;preserve&quot;&gt; ...... &lt;/text&gt;
+      &lt;sha1&gt;cb6ka9vga7c7n73ytdsqfu2zviychjo&lt;/sha1&gt;
+    &lt;/revision&gt;
+  &lt;/page&gt;
+  &lt;page&gt;
+   ......
+  &lt;/page&gt;
+</code></pre>
+<p>这样一来，这个XML文件构成了如下的一颗树结构：</p>
+<h2 id="2-elementtree">2 ElementTree</h2>
+<p>ElementTree 是Python中一个解析XML的包，给我的感觉就是简单直观。ElementTree将XML文件解析为一个XML树，通过遍历这棵树实现数据的访问</p>
 ]]></content>
     </entry>
     <entry>
@@ -344,17 +410,6 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
 <p>红十字-DVD；蓝三角-BOOKS；绿星-ELECTRONICS；橘黄圆-KITCHEN</p>
 <p>目标域：DVD</p>
 <p>对原始特征，可以发现DVD域和BOOKS域是相似的，经过训练不同域的实例被混合，并且更接近目标域。对于取所有数据和JS-E方法，他们的域适应能力是有限的，因为没有对目标域做优化。本文的TDS框架不仅可以选择最合适的实例（在分布形状上相似），同样可以学习到更好的表示（与目标域实例的分布点更接近）。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[我是谁？]]></title>
-        <id>https://kolaen.github.io/post/wo-shi-shui/</id>
-        <link href="https://kolaen.github.io/post/wo-shi-shui/">
-        </link>
-        <updated>2020-06-08T08:24:58.000Z</updated>
-        <content type="html"><![CDATA[<p>😀一名名不见经传的NLPer</p>
-<p>👇欢迎骚扰</p>
-<p>✉️zoqxxzym@gmail.com</p>
 ]]></content>
     </entry>
 </feed>
