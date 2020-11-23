@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>pytorch 错误：当使用NCCL作为DDP的后台时报错 | YimingZ</title>
+<title>正则匹配 | YimingZ</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,7 +23,6 @@
 
   </head>
   <body>
-  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://kolaen.github.io">YimingZ</a></h3>
@@ -80,63 +79,40 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <article class="article">
-            <h1>pytorch 错误：当使用NCCL作为DDP的后台时报错</h1>
-            <p class="article-meta">
-              2020-11-03
-              
-                <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge ">
-                  pytorch
-                </a>
-              
-            </p>
-            
-            <div class="post-content">
-              <p>运行环境：<br>
-（1）在<strong>Docker</strong>中使用DDP进行单机多卡训练<br>
-（2）cuda = 11.1<br>
-（3）NCCL = 2.7.8<br>
-NCCL安装教程：https://docs.nvidia.com/deeplearning/nccl/install-guide/index.html<br>
-解决思路：</p>
-<p>首先报错</p>
-<pre><code>RuntimeError: NCCL error in: ......, unhandled system error, NCCL version 2.7.8
-</code></pre>
-<p>这里看不出错误类型，加入系统环境参数，查看出错代码：<br>
-<code>os.environ['NCCL_DEBUG'] = 'INFO'</code><br>
-<code>os.environ['NCCL_DEBUG_SUBSYS'] = 'ALL'</code><br>
-查出报错信息：</p>
-<pre><code>NCCL 2.7.3 on nvidia/cuda:10.1-devel-ubuntu18.04 docker has shared memory error.
-</code></pre>
-<p>根据 https://github.com/NVIDIA/nccl/issues/342 的解决方法可以得出结论：<br>
-NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但是由于我们时在Docker环境中使用NCCL，Docker限制了/dev/shm文件夹的大小，故而会报错。</p>
-<p>解决方法有两个<br>
-（1）在docker运行时，增加/dev/shm文件的大小 <a href="https://stackoverflow.com/questions/30210362/how-to-increase-the-size-of-the-dev-shm-in-docker-container">教程</a></p>
-<pre><code>docker run -it --shm-size=256m oracle11g /bin/bash
-</code></pre>
-<p>（2）不使用内存共享机制，设置环境变量</p>
-<pre><code>NCCL_SHM_DISABLE=1
-</code></pre>
+          <h2 class="current-tag">标签: 正则匹配</h2>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://kolaen.github.io/post/zheng-ze-pi-pei-yu-fa-chang-qi-geng-xin/">正则匹配语法（长期更新）</a>
+    </h2>
+    <p class="article-meta">
+      2020-11-20
+      
+        <a href="https://kolaen.github.io/tag/97ziCXhLD/" class="badge success">
+          正则匹配
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      
+    </p>
+    <div class="row">
+      <a href="https://kolaen.github.io/post/zheng-ze-pi-pei-yu-fa-chang-qi-geng-xin/" class="readmore-link">
+        <button>
+          Read More
+        </button>
+      </a>
+    </div>
+  </article>
 
-            </div>
-          </article>
+
         </div>
-        <div class="paper" data-aos="fade-in">
-          
-            <div class="next-post">
-              <div class="next">
-                下一篇
-              </div>
-              <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">
-                <h3 class="post-title">
-                  pytorch错误：leaf variable has been moved into the graph interior 
-                </h3>
-              </a>
-            </div>
-          
-        </div>
-        
+        <div class="row flex-edges">
+  
+  
+</div>
+
       </div>
-
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://kolaen.github.io/images/avatar.png?v=1606099931244" class="no-responsive avatar">
@@ -235,7 +211,7 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
     </div>
     <div class="row">
       
-        <a href="https://kolaen.github.io/tag/rP34CK1dJ/" class="badge ">
+        <a href="https://kolaen.github.io/tag/rP34CK1dJ/" class="badge secondary">
           DDP
         </a>
       
@@ -243,23 +219,23 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
           pytorch
         </a>
       
-        <a href="https://kolaen.github.io/tag/MQjS3rao3/" class="badge secondary">
+        <a href="https://kolaen.github.io/tag/MQjS3rao3/" class="badge ">
           XML
         </a>
       
-        <a href="https://kolaen.github.io/tag/97ziCXhLD/" class="badge warning">
+        <a href="https://kolaen.github.io/tag/97ziCXhLD/" class="badge success">
           正则匹配
         </a>
       
-        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge success">
+        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge secondary">
           机器学习
         </a>
       
-        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge ">
+        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge secondary">
           自然语言处理
         </a>
       
-        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge secondary">
+        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge warning">
           域适应
         </a>
       
@@ -273,7 +249,6 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
     Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
-
 
     </div>
 
