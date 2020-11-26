@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>统计学习 | YimingZ</title>
+<title>Pytorch Distributed Date Parallel Simple Guide | YimingZ</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -23,6 +23,7 @@
 
   </head>
   <body>
+  
     <nav class="navbar border fixed split-nav">
   <div class="nav-brand">
     <h3><a href="https://kolaen.github.io">YimingZ</a></h3>
@@ -79,45 +80,113 @@
     <div id="top" class="row site">
       <div class="sm-12 md-8 col">
         <div class="paper">
-          <h2 class="current-tag">标签: 统计学习</h2>
-          
-  <article class="article">
-    <h2 class="article-title">
-      <a href="https://kolaen.github.io/post/jue-ce-shu/">决策树及其特征选择</a>
-    </h2>
-    <p class="article-meta">
-      2020-06-08
-      
-        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge warning">
-          机器学习
-        </a>
-      
-        <a href="https://kolaen.github.io/tag/HayyR6v2EE/" class="badge secondary">
-          统计学习
-        </a>
-      
-    </p>
-    <p class="text-lead">
-      <p>决策树（decision tree）是一种基本的回归于分类方法。主要讨论决策树模型以及特征选择</p>
+          <article class="article">
+            <h1>Pytorch Distributed Date Parallel Simple Guide</h1>
+            <p class="article-meta">
+              2020-11-26
+              
+            </p>
+            
+            <div class="post-content">
+              <p>总结一下如何使用Pytorch 分布计算神器DDP。本文只介绍并行计算部分，关于DDP的优点其他文章已经进行了详细介绍，我主要总结一下如何快速部署。</p>
+<!-- more -->
+<h2 id="1-准备工作">1. 准备工作</h2>
+<p>使用DDP首先要继承<code>torch.utils.data</code>中的<code>Dataset</code>类，并使用<code>DataLoader</code>加载数据，这样在并行计算时可以避免数据重复的问题。</p>
+<p>继承<code>Dataset</code>类的同时也要实现如下的函数。</p>
+<pre><code>from torch.utils.data import Dataset
 
-    </p>
-    <div class="row">
-      <a href="https://kolaen.github.io/post/jue-ce-shu/" class="readmore-link">
-        <button>
-          Read More
-        </button>
-      </a>
-    </div>
-  </article>
+class RelationExtractionDataSet(Dataset):
+    def __init__(self,):
+        ......
+
+    def __getitem__(self, index):
+        ......
+
+    def __len__(self):
+        ......
+</code></pre>
+<h2 id="2-pytorch-ddp">2. Pytorch DDP</h2>
+<p>我们以使用最多的<strong>单机多卡</strong>为例，在已有的自定义的<code>DataSet</code>类的前提下，我们在单卡模型的基础上加入如下代码。单机多卡下，setup()和cleanup()都可以直接复用。</p>
+<pre><code>import torch.distributed as dist
+import torch.multiprocessing as mp
+from torch.nn.parallel import DistributedDataParallel as DDP
 
 
+# 初始化
+def setup(rank, world_size):
+    os.environ['MASTER_ADDR'] = '127.0.0.1'
+    os.environ['MASTER_PORT'] = '12355'
+
+    dist.init_process_group(&quot;nccl&quot;, rank=rank, world_size=world_size) 
+    torch.cuda.set_device(rank)
+
+
+# 清空进程
+def cleanup():
+    dist.destroy_process_group()
+
+
+# 训练函数
+def train(rank, world_size, **kwargs):
+    setup(rank, world_size)
+
+    model = MyModel(config)
+    model.train()
+
+    dataset = MyDataSet(config)
+    data_sampler = DistributedSampler(data_set, world_size, rank)
+    data_loader = DataLoader(data_set, batch_size, False, data_sampler)
+
+    optim = AdamW(model.parameters(), lr=lr)
+
+    model = DDP(model, device_ids=[rank], find_unused_parameters=True) 
+        # it transforms origin model into DDP model
+
+    for i, batch in enumerate(data_loader):
+        loss = model(batch)
+        optim.zero_grad()
+        loss.backward()
+        optim.step()
+
+        if rank == 0:
+            print(loss.item())
+    
+    torch.save(model.module.state_dict(), model_path)
+    cleanup()
+
+
+# 启动多进程程序
+def run_demo(demo_fn, world_size, **kwargs):
+    mp.spawn(demo_fn,
+             args=(world_size, **kwargs,),
+             nprocs=world_size,
+             join=True)
+
+
+if __name__ == '__main__':
+    run_demo(train, 4, **kwargs)
+</code></pre>
+
+            </div>
+          </article>
         </div>
-        <div class="row flex-edges">
-  
-  
-</div>
-
+        <div class="paper" data-aos="fade-in">
+          
+            <div class="next-post">
+              <div class="next">
+                下一篇
+              </div>
+              <a href="https://kolaen.github.io/post/pytorch-ddp-xian-cun-zhan-yong-bu-jun-heng-wen-ti/">
+                <h3 class="post-title">
+                  Pytorch DDP 显存占用不均衡问题
+                </h3>
+              </a>
+            </div>
+          
+        </div>
+        
       </div>
+
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
     <img src="https://kolaen.github.io/images/avatar.png?v=1606374198271" class="no-responsive avatar">
@@ -218,7 +287,7 @@
     </div>
     <div class="row">
       
-        <a href="https://kolaen.github.io/tag/rP34CK1dJ/" class="badge success">
+        <a href="https://kolaen.github.io/tag/rP34CK1dJ/" class="badge secondary">
           DDP
         </a>
       
@@ -226,27 +295,27 @@
           pytorch
         </a>
       
-        <a href="https://kolaen.github.io/tag/MQjS3rao3/" class="badge ">
+        <a href="https://kolaen.github.io/tag/MQjS3rao3/" class="badge success">
           XML
         </a>
       
-        <a href="https://kolaen.github.io/tag/97ziCXhLD/" class="badge warning">
+        <a href="https://kolaen.github.io/tag/97ziCXhLD/" class="badge secondary">
           正则匹配
         </a>
       
-        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge secondary">
+        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge ">
           机器学习
         </a>
       
-        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge secondary">
+        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge success">
           自然语言处理
         </a>
       
-        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge success">
+        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge ">
           域适应
         </a>
       
-        <a href="https://kolaen.github.io/tag/HayyR6v2EE/" class="badge success">
+        <a href="https://kolaen.github.io/tag/HayyR6v2EE/" class="badge secondary">
           统计学习
         </a>
       
@@ -256,6 +325,7 @@
     Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
   </div>
 </div>
+
 
     </div>
 
