@@ -1,94 +1,103 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" >
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <meta name="referrer" content="never">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="author" content="kveln">
+  <title>ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension | YimingZ</title>
+  <link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link href="https://kolaen.github.io/media/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!--  <link href="https://kolaen.github.io/media/css/all.min.css" rel="stylesheet" type="text/css"> -->
+  <link href="https://cdn.bootcss.com/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link rel="alternate" type="application/rss+xml" title="ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension | YimingZ » Feed" href="https://kolaen.github.io/atom.xml">
+  <link rel="stylesheet"href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/styles/androidstudio.min.css">
+  <link href="https://kolaen.github.io/styles/main.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.15.10/build/highlight.min.js"></script>
+  <!-- <script src="https://kolaen.github.io/media/scripts/jquery.min.js"></script> -->
+  <script>hljs.initHighlightingOnLoad();</script>
+  
 
-<title>ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension | YimingZ</title>
-<meta name="description" content="温故而知新">
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://kolaen.github.io/favicon.ico?v=1606374198271">
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-<link rel="stylesheet" href="https://kolaen.github.io/styles/main.css">
-
-
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-
-
-<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-
+    <meta property="og:description" content="ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension"/>
+    <meta property="og:url" content="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/"/>
+    <meta property="og:locale" content="zh-CN"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="YimingZ"/>
   </head>
   <body>
-  
-    <nav class="navbar border fixed split-nav">
-  <div class="nav-brand">
-    <h3><a href="https://kolaen.github.io">YimingZ</a></h3>
-  </div>
-  <div class="collapsible">
-    <input id="collapsible1" type="checkbox" name="collapsible1">
-    <button>
-      <label for="collapsible1">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-      </label>
-    </button>
-    <div class="collapsible-body">
-      <ul class="inline">
-        
-          <li>
-            
-              <a href="/" class="menu">
-                首页
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/archives" class="menu">
-                归档
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/tags" class="menu">
-                标签
-              </a>
-            
-          </li>
-        
-          <li>
-            
-              <a href="/post/about" class="menu">
-                关于
-              </a>
-            
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-
-    <div id="top" class="row site">
-      <div class="sm-12 md-8 col">
-        <div class="paper">
-          <article class="article">
-            <h1>ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</h1>
-            <p class="article-meta">
-              2020-06-10
+  	<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href="https://kolaen.github.io">YimingZ</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item">
               
-            </p>
-            
-            <div class="post-content">
-              <h2 id="1-摘要">1. 摘要</h2>
+              <a class="nav-link" href="/">首页</a>
+              
+          </li>
+          
+          <li class="nav-item">
+              
+              <a class="nav-link" href="/archives">归档</a>
+              
+          </li>
+          
+          <li class="nav-item">
+              
+              <a class="nav-link" href="/tags">标签</a>
+              
+          </li>
+          
+          <li class="nav-item">
+              
+              <a class="nav-link" href="/post/about">关于</a>
+              
+          </li>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url('https://kolaen.github.io/media/images/home-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+          	<span class="tags">
+          	 
+        </span>
+            <h1>ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</h1>
+            <span class="meta">
+            	Posted on
+              2020-06-10，4 min read
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <h2 id="1-摘要">1. 摘要</h2>
 <p>​		论文提出了一种新的Sequence-to-Sequence预训练模型。模型encoder部分基于BERT（双向encoder），decoder部分基于GPT（单向从左至右decoder），当然还包括了其他的预训练框架。BART训练步骤：（1）添加了任意噪声的混乱文本；（2）模型学习重新构建原始文本。论文的实验发现，使用Sentence Permutation和novel in-filling 方法能够达到最优秀的模型。同时，作者也表示，BART模型对文本生成问题进行微调时，最有效。</p>
 <!-- more -->
 <h2 id="2-模型">2. 模型</h2>
@@ -122,180 +131,90 @@
 <p>​		总的来说，和其他预训练模型在传统任务上的效果只是有些许的提高。不过既然叫做生成式预训练模型，那肯定是在生成式任务上做的好，比如说自动摘要生成。</p>
 <figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610175725.png" alt="" loading="lazy"></figure>
 
-            </div>
-          </article>
-        </div>
-        <div class="paper" data-aos="fade-in">
           
-            <div class="next-post">
-              <div class="next">
-                下一篇
-              </div>
-              <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
-                <h3 class="post-title">
-                  Reinforced Training Data Selection for Domain Adaptation
-                </h3>
-              </a>
-            </div>
-          
-        </div>
+          <p class="next-post">下一篇：
+            <a href="https://kolaen.github.io/post/reinforced-training-data-selection-for-domain-adaptation/">
+              <span class="post-title">
+                Reinforced Training Data Selection for Domain Adaptation&rarr;
+              </span>
+            </a>
+          </p>
         
+        <div class="comment">
+          
+        </div>
       </div>
-
-      <div class="sm-12 md-4 col sidebar">
-  <div class="paper info-container">
-    <img src="https://kolaen.github.io/images/avatar.png?v=1606374198271" class="no-responsive avatar">
-    <div class="text-muted">温故而知新</div>
-    <div class="social-container">
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      最新文章
+  </article>
+ <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+            
+              
+              <li class="list-inline-item">
+              <a href="https://kolaen.github.io/atom.xml" target="_blank">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+              </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy;<span>YimingZ</span><br><a href="https://github.com/getgridea/gridea" class="Themeinfo">Powered by Gridea</a></p>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <ul>
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/pytorch-distributed-date-parallel-simple-guide/">Pytorch Distributed Date Parallel Simple Guide</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/pytorch-ddp-xian-cun-zhan-yong-bu-jun-heng-wen-ti/">Pytorch DDP 显存占用不均衡问题</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/xml-jie-xi-yi-wiki_dump-wei-li/">XML解析-以wiki_dump为例</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/zheng-ze-pi-pei-yu-fa-chang-qi-geng-xin/">正则匹配语法（长期更新）</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/ke-neng-hui-fan-de-pytorch-yan-chong-cuo-wu-crossentropyloss-zhi-qian-shi-yong-softmax-ji-huo/">可能会犯的pytorch严重错误：CrossEntropyLoss之前使用Softmax激活</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/ddp-cuo-wu-this-error-indicates-that-your-module-has-parameters-that-were-not-used-in-producing-loss/">DDP错误：This error indicates that your module has parameters that were not used in producing loss. </a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/pytorch-cuo-wu-dang-shi-yong-nccl-zuo-wei-ddp-de-hou-tai-shi-bao-cuo/">pytorch 错误：当使用NCCL作为DDP的后台时报错</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/pytorch-cuo-wu-leaf-variable-has-been-moved-into-the-graph-interior/">pytorch错误：leaf variable has been moved into the graph interior </a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/get-to-the-point-summarization-with-pointer-generator-networks/">Get To The Point: Summarization with Pointer-Generator Networks</a>
-            </li>
-          
-        
-          
-            <li>
-              <a href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</a>
-            </li>
-          
-        
-          
-        
-          
-        
-          
-        
-      </ul>
-    </div>
-  </div>
-  <div class="paper">
-    <div class="sidebar-title">
-      标签列表
-    </div>
-    <div class="row">
-      
-        <a href="https://kolaen.github.io/tag/rP34CK1dJ/" class="badge secondary">
-          DDP
-        </a>
-      
-        <a href="https://kolaen.github.io/tag/XAW5i2FPR/" class="badge secondary">
-          pytorch
-        </a>
-      
-        <a href="https://kolaen.github.io/tag/MQjS3rao3/" class="badge secondary">
-          XML
-        </a>
-      
-        <a href="https://kolaen.github.io/tag/97ziCXhLD/" class="badge ">
-          正则匹配
-        </a>
-      
-        <a href="https://kolaen.github.io/tag/qkUhYl96o/" class="badge warning">
-          机器学习
-        </a>
-      
-        <a href="https://kolaen.github.io/tag/-wEKMxOLEA/" class="badge secondary">
-          自然语言处理
-        </a>
-      
-        <a href="https://kolaen.github.io/tag/1SDWV8QB9F/" class="badge warning">
-          域适应
-        </a>
-      
-        <a href="https://kolaen.github.io/tag/HayyR6v2EE/" class="badge warning">
-          统计学习
-        </a>
-      
-    </div>
-  </div>
-  <div class="paper">
-    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://kolaen.github.io/atom.xml" target="_blank">RSS</a>
-  </div>
-</div>
-
-
-    </div>
-
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-
-<script type="application/javascript">
-
-AOS.init();
-
-hljs.initHighlightingOnLoad()
-
-</script>
-
-
-
-
+   </footer>
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+  <!-- <script src="https://kolaen.github.io/media/scripts/bootstrap.bundle.min.js"></script> -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://cdn.jsdelivr.net/gh/Alanrk/clean-cdn@1.0/scripts/clean-blog.min.js"></script>
+  <!-- <script src="https://kolaen.github.io/media/scripts/clean-blog.min.js"></script> -->
+  <script src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+  <style type="text/css">a.back_to_top{text-decoration:none;position:fixed;bottom:40px;right:30px;background:#f0f0f0;height:40px;width:40px;border-radius:50%;line-height:36px;font-size:18px;text-align:center;transition-duration:.5s;transition-propety:background-color;display:none}a.back_to_top span{color:#888}a.back_to_top:hover{cursor:pointer;background:#dfdfdf}a.back_to_top:hover span{color:#555}@media print,screen and(max-width:580px){.back_to_top{display:none!important}}</style>
+<a id="back_to_top" href="#" class="back_to_top">
+  <span>▲</span></a>
+<script>$(document).ready((function(_this) {
+    return function() {
+      var bt;
+      bt = $('#back_to_top');
+      if ($(document).width() > 480) {
+        $(window).scroll(function() {
+          var st;
+          st = $(window).scrollTop();
+          if (st > 30) {
+            return bt.css('display', 'block')
+          } else {
+            return bt.css('display', 'none')
+          }
+        });
+        return bt.click(function() {
+          $('body,html').animate({
+            scrollTop: 0
+          },
+          800);
+          return false
+        })
+      }
+    }
+  })(this));</script>
   </body>
 </html>
+
