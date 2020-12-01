@@ -1,9 +1,11 @@
+
+<!DOCTYPE html>
 <html>
   <head>
     
 <meta charset="utf-8" >
 
-<title>YimingZ</title>
+<title>Docker CUDA镜像使用 | YimingZ</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -84,31 +86,54 @@
 </transition>
 
 
-        <div class="content-container">
+      <div class="content-container">
+        <div class="post-detail">
           
-          <div class="tags-container">
-            
-              <a class="tag" href="https://kolaen.github.io/tag/rP34CK1dJ/">DDP</a>
-            
-              <a class="tag" href="https://kolaen.github.io/tag/XAW5i2FPR/">pytorch</a>
-            
-              <a class="tag" href="https://kolaen.github.io/tag/MQjS3rao3/">XML</a>
-            
-              <a class="tag" href="https://kolaen.github.io/tag/97ziCXhLD/">正则匹配</a>
-            
-              <a class="tag" href="https://kolaen.github.io/tag/qkUhYl96o/">机器学习</a>
-            
-              <a class="tag" href="https://kolaen.github.io/tag/-wEKMxOLEA/">自然语言处理</a>
-            
-              <a class="tag" href="https://kolaen.github.io/tag/1SDWV8QB9F/">域适应</a>
-            
-              <a class="tag" href="https://kolaen.github.io/tag/HayyR6v2EE/">统计学习</a>
+          <h2 class="post-title">Docker CUDA镜像使用</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2020-12-01</span>
             
           </div>
+          <div class="post-content">
+            <p>本文主要介绍如何在Docker中使用NVIDIA官方镜像</p>
+<!-- more -->
+<h2 id="1-必要的需求">1. 必要的需求</h2>
+<p>当我们pull到适合的镜像image之后，需要创建容器container。使用Docker运行pytorch需要满足以下几个需求：</p>
+<ol>
+<li>需要有命令行界面以便运行.py</li>
+<li>能够方便地上传训练文件以及模型</li>
+<li>最重要的一点，能够使用GPU</li>
+<li>能够使用DDP</li>
+</ol>
+<h2 id="2-必要的参数">2. 必要的参数</h2>
+<p>这里先展示一下完整的Docker参数：</p>
+<pre><code>docker run --shm-size=96g -it -v /宿主机目录:/容器目录 --gpus all nvidia/cuda:11.1-cudnn8-devel-ubuntu18.04 /bin/bash
+</code></pre>
+<p>我们从左至右解释一下每个参数。<br>
+<code>docker run</code> 代表我们将image初始化为一个container</p>
+<p><code>--shm-size=96g</code> 设置镜像的<code>/dev/shm</code>文件夹的大小，这非常重要，因为docker默认参数为1g，根本无法满足使用DDP并行训练时的需求。</p>
+<p><code>-it</code> <code>-t</code>选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，<code>-i</code>则让容器的标准输入保持打开。</p>
+<p><code>-v /宿主机目录:/容器目录</code> 文件夹映射，将宿主机的文件夹映射到容器中，这样容器就可以直接访问宿主机的文件了。注意目录必须是绝对路径。</p>
+<p><code>--gpus all</code> 非常重要的命令，允许容器中使用gpu，同样也可以指定gpu</p>
+<p><code>nvidia/cuda:11.1-cudnn8-devel-ubuntu18.04 /bin/bash</code> 镜像的名称，以及我们要在创建容器后马上运行/bin/bash，否则容器会自动停止。</p>
 
+          </div>
         </div>
 
-        <div class="site-footer">
+        
+          <div class="next-post">
+            <a class="purple-link" href="https://kolaen.github.io/post/pytorch-distributed-date-parallel-simple-guide/">
+              <h3 class="post-title">
+                下一篇：Pytorch Distributed Date Parallel Simple Guide
+              </h3>
+            </a>
+          </div>
+          
+      </div>
+
+      
+
+      <div class="site-footer">
   <div class="slogan">温故而知新</div>
   <div class="social-container">
     
@@ -127,8 +152,8 @@
 </div>
 
 
-      </div>
-      <script type="application/javascript">
+    </div>
+    <script type="application/javascript">
 
 hljs.initHighlightingOnLoad()
 
@@ -144,6 +169,5 @@ var app = new Vue({
 
 
 
-    </div>
   </body>
 </html>

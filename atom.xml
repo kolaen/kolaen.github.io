@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kolaen.github.io</id>
     <title>YimingZ</title>
-    <updated>2020-11-26T07:14:24.779Z</updated>
+    <updated>2020-12-01T07:19:02.262Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kolaen.github.io"/>
     <link rel="self" href="https://kolaen.github.io/atom.xml"/>
@@ -10,6 +10,37 @@
     <logo>https://kolaen.github.io/images/avatar.png</logo>
     <icon>https://kolaen.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, YimingZ</rights>
+    <entry>
+        <title type="html"><![CDATA[Docker CUDA镜像使用]]></title>
+        <id>https://kolaen.github.io/post/docker-cuda-jing-xiang-shi-yong/</id>
+        <link href="https://kolaen.github.io/post/docker-cuda-jing-xiang-shi-yong/">
+        </link>
+        <updated>2020-12-01T06:52:59.000Z</updated>
+        <summary type="html"><![CDATA[<p>本文主要介绍如何在Docker中使用NVIDIA官方镜像</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>本文主要介绍如何在Docker中使用NVIDIA官方镜像</p>
+<!-- more -->
+<h2 id="1-必要的需求">1. 必要的需求</h2>
+<p>当我们pull到适合的镜像image之后，需要创建容器container。使用Docker运行pytorch需要满足以下几个需求：</p>
+<ol>
+<li>需要有命令行界面以便运行.py</li>
+<li>能够方便地上传训练文件以及模型</li>
+<li>最重要的一点，能够使用GPU</li>
+<li>能够使用DDP</li>
+</ol>
+<h2 id="2-必要的参数">2. 必要的参数</h2>
+<p>这里先展示一下完整的Docker参数：</p>
+<pre><code>docker run --shm-size=96g -it -v /宿主机目录:/容器目录 --gpus all nvidia/cuda:11.1-cudnn8-devel-ubuntu18.04 /bin/bash
+</code></pre>
+<p>我们从左至右解释一下每个参数。<br>
+<code>docker run</code> 代表我们将image初始化为一个container</p>
+<p><code>--shm-size=96g</code> 设置镜像的<code>/dev/shm</code>文件夹的大小，这非常重要，因为docker默认参数为1g，根本无法满足使用DDP并行训练时的需求。</p>
+<p><code>-it</code> <code>-t</code>选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，<code>-i</code>则让容器的标准输入保持打开。</p>
+<p><code>-v /宿主机目录:/容器目录</code> 文件夹映射，将宿主机的文件夹映射到容器中，这样容器就可以直接访问宿主机的文件了。注意目录必须是绝对路径。</p>
+<p><code>--gpus all</code> 非常重要的命令，允许容器中使用gpu，同样也可以指定gpu</p>
+<p><code>nvidia/cuda:11.1-cudnn8-devel-ubuntu18.04 /bin/bash</code> 镜像的名称，以及我们要在创建容器后马上运行/bin/bash，否则容器会自动停止。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Pytorch Distributed Date Parallel Simple Guide]]></title>
         <id>https://kolaen.github.io/post/pytorch-distributed-date-parallel-simple-guide/</id>
@@ -355,50 +386,6 @@ NCCL2.7版本使用共享内存机制，所以会占用/dev/shm文件夹。但�
 <p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mtext>loss</mtext><mi>t</mi></msub><mo>=</mo><mo>−</mo><mi>log</mi><mo>⁡</mo><mi>P</mi><mo>(</mo><msubsup><mi>w</mi><mi>t</mi><mo>∗</mo></msubsup><mo>)</mo><mo>+</mo><mi>λ</mi><munder><mo>∑</mo><mi>i</mi></munder><mi>min</mi><mo>⁡</mo><mo>(</mo><msubsup><mi>a</mi><mi>i</mi><mi>t</mi></msubsup><mo separator="true">,</mo><msubsup><mi>c</mi><mi>i</mi><mi>t</mi></msubsup><mo>)</mo></mrow><annotation encoding="application/x-tex">\textrm{loss}_t = -\log P(w_t^*) + \lambda \sum_i \min (a_i^t,c_i^t)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.84444em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord text"><span class="mord textrm">loss</span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2805559999999999em;"><span style="top:-2.5500000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7386959999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.327674em;vertical-align:-1.277669em;"></span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop">min</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8435559999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8435559999999999em;"><span style="top:-2.4530000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
 <p>其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span>为超参数</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[ACL2020 BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension]]></title>
-        <id>https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/</id>
-        <link href="https://kolaen.github.io/post/bart-denoising-sequence-to-sequence-pre-training-for-natural-language-generation-translation-and-comprehension/">
-        </link>
-        <updated>2020-06-10T09:58:29.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="1-摘要">1. 摘要</h2>
-<p>​		论文提出了一种新的Sequence-to-Sequence预训练模型。模型encoder部分基于BERT（双向encoder），decoder部分基于GPT（单向从左至右decoder），当然还包括了其他的预训练框架。BART训练步骤：（1）添加了任意噪声的混乱文本；（2）模型学习重新构建原始文本。论文的实验发现，使用Sentence Permutation和novel in-filling 方法能够达到最优秀的模型。同时，作者也表示，BART模型对文本生成问题进行微调时，最有效。</p>
-]]></summary>
-        <content type="html"><![CDATA[<h2 id="1-摘要">1. 摘要</h2>
-<p>​		论文提出了一种新的Sequence-to-Sequence预训练模型。模型encoder部分基于BERT（双向encoder），decoder部分基于GPT（单向从左至右decoder），当然还包括了其他的预训练框架。BART训练步骤：（1）添加了任意噪声的混乱文本；（2）模型学习重新构建原始文本。论文的实验发现，使用Sentence Permutation和novel in-filling 方法能够达到最优秀的模型。同时，作者也表示，BART模型对文本生成问题进行微调时，最有效。</p>
-<!-- more -->
-<h2 id="2-模型">2. 模型</h2>
-<p>​		其他方面，除了摘要中提到的优点和结构。作者在进行翻译任务微调时，在BART之前加入了额外的几层Transformer，这几层可以将其他语言的noise翻译成英文noise。</p>
-<figure data-type="image" tabindex="1"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610134444.png" alt="12" loading="lazy"></figure>
-<h3 id="21-模型结构">2.1 模型结构</h3>
-<p>​		结构方面，BART模型使用了标准Seq2Seq Transformer结构然后后接GPT结构。激活函数上，作者使用了改进的ReLU函数——GeLUs。作者使用正态分布<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="script">N</mi><mo>(</mo><mn>0</mn><mo separator="true">,</mo><mn>0.02</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">\mathcal{N}(0,0.02)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathcal" style="margin-right:0.14736em;">N</span></span><span class="mopen">(</span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">0</span><span class="mord">2</span><span class="mclose">)</span></span></span></span>初始化参数。base模型使用了6层encoder和6层decoder，large模型各使用了12层。</p>
-<p>​		BART和BERT模型的不同点：</p>
-<ol>
-<li>decoder的每一层都增加了一个对encoder的hidden layer的cross-attention机制。</li>
-<li>BART没有使用BERT中的feed-forward网络。</li>
-</ol>
-<h3 id="22-预训练">2.2 预训练</h3>
-<p>​		不同于其他只能接受指定类型噪音的方法，任何类型的混乱文本都可以应用到BART上。极端一点说，当文档中的所有信息都丢失时，BART就相当于是一个语言模型了。</p>
-<p>​		对于噪声添加或者说叫transformations，作者总结了一下几个方法：</p>
-<ol>
-<li>Token Masking：和bert中一样，使用&lt;MASK&gt;对单词做替换。</li>
-<li>Token Deletion：从输入中随机删除token，这样做使得模型需要作出判断，哪一个位置上的token被删除。</li>
-<li>Text Infilling：这是使模型表现最好的一种方式。根据泊松分布<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>λ</mi><mo>=</mo><mn>3</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(\lambda=3)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">3</span><span class="mclose">)</span></span></span></span>确定span，这个span范围内的token用<strong>一个</strong>&lt;mask&gt;代替。如果span=0，那么就在该位置插入一个&lt;mask&gt;。这种方式教会模型预测多少个token被丢弃。</li>
-<li>Sentence Permutation：文档分句后，打乱句子顺序。</li>
-<li>Document Rotation：随机均匀地选择一个token，让这个token作为文档的开头的单词。这样可以使模型识别文档的开头。</li>
-</ol>
-<figure data-type="image" tabindex="2"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610173700.png" alt="" loading="lazy"></figure>
-<h3 id="23-模型微调">2.3 模型微调</h3>
-<h4 id="231-文本分类">2.3.1 文本分类</h4>
-<p>​		BART的两个输入都是相同的分类语句。和BERT不同的是，BART直接使用Decoder最后一层的最后输出作为分类的输入向量。</p>
-<h4 id="232-机器翻译">2.3.2 机器翻译</h4>
-<p>​		模型结构上，和其他微调模型不同的是，作者将预训练好的BART模型作为新模型的Decoder，然后加入了新的encoder部分。即使用一个多层的Transformer结构，将其他语言的输入转化为英文输入。在训练时，分为两步：（1）固定BART的参数，即不训练BART参数，训练新的encoder的参数；（2）经过少量的迭代，训练整个模型。</p>
-<figure data-type="image" tabindex="3"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610175423.png" alt="" loading="lazy"></figure>
-<h2 id="3-结果分析">3. 结果分析</h2>
-<p>​		总的来说，和其他预训练模型在传统任务上的效果只是有些许的提高。不过既然叫做生成式预训练模型，那肯定是在生成式任务上做的好，比如说自动摘要生成。</p>
-<figure data-type="image" tabindex="4"><img src="https://raw.githubusercontent.com/kolaen/Pic/master/20200610175725.png" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
